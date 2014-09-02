@@ -1,2 +1,29 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+ul, ol {  //THERE MAY BE OTHER ELEMENTS IN THE LIST
+  margin-left:20px;
+  padding:0;
+}
+
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+  border:2px solid black;
+}
+
+td {
+  text-align:left;
+  font-weight:normal;
+  vertical-align:middle;
+  border:1px solid black;
+  padding:5px;
+}
+
+th {
+  border-bottom: 2px solid black;
+  font-weight: bold;
+  padding: 5px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
