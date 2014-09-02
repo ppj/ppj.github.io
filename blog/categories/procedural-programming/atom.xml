@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Procedural Programming | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/procedural-programming/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-02T23:15:42+10:00</updated>
+  <updated>2014-09-03T00:39:56+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -19,6 +19,8 @@
     <updated>2014-08-18T13:13:27+10:00</updated>
     <id>http://ppj.github.io/blog/2014/08/18/how-to-start-writing-a-procedural-program</id>
     <content type="html"><![CDATA[<p>I have starter trouble&#8230; always. I either spend way too much time &#39;planning&#39; and &#39;collecting information&#39; when i want to start something new, or, the other extreme (but less often), just dive right into it and then suffer due to under preparation.</p>
+
+<!-- more -->
 
 <p>The fundamental technique i learnt during the first course in the first <a href="http://www.gotealeaf.com/">TeaLeaf</a> course on Ruby basics was how to start writing a program. In other words, how much preparation is just enough to start writing a procedural program.</p>
 
