@@ -9,6 +9,8 @@ categories:
 ---
 I have starter trouble... always. I either spend way too much time 'planning' and 'collecting information' when i want to start something new, or, the other extreme (but less often), just dive right into it and then suffer due to under preparation.
 
+<!-- more -->
+
 The fundamental technique i learnt during the first course in the first [TeaLeaf](http://www.gotealeaf.com/) course on Ruby basics was how to start writing a program. In other words, how much preparation is just enough to start writing a procedural program.
 
 A quick side-note: Although, procedural programming is (almost) a thing of the past, and all for the right reasons, it is still a great way to start learning programming IMO. The primary reason, i believe, is our brains are wired to think sequentially or serially: first do this, then get the result, then do that... and so on. At least mine is.

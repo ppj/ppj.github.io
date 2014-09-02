@@ -12,14 +12,13 @@ Before i developed the console-based Black Jack, i tried developing a slightly s
 ## Problem Statement for Tic-Tac-Toe:
 On an empty board of 3x3 squares, a player and the computer (or another player) pick empty squares to put their ```X``` or `O` (symbols) in. The first one to have their symbols in a row (or column or diagonal) of 3 wins.
 
-### Extracted Nouns:
-<ul>
-<li>Board</li>
-<li>Square( or Position )</li>
-<li>Player (this would also address the other player/computer?)</li>
-<li>Game (that would be the engine)</li>
-</ul>
- Note: The Tic-Tac-Toe code can be a perfect foundation for a "connect-4" game!
+<h3 class='no_extra_new_line'>Extracted Nouns:</h3>
+- Board
+- Square (or Position)
+- Player (this would also address the other player/computer?)
+- Game (that would be the engine)
+
+Note: The Tic-Tac-Toe code can be a perfect foundation for a "connect-4" game!
   ... or even a 'expandable' version of Tic-Tac-Toe (4x4, 5x5, etc.)!!
 
 ## Problem Statement for BlackJack:
@@ -27,7 +26,7 @@ BlackJack is a card game played between a dealer and player(s). The dealer start
 
 ### Class Design:
 
-|Nouns       | properties | behaviours|
+|Nouns       | Properties | Behaviours|
 |------------|------------|-----------|
 |BlackJack   |  dealer, Player, Deck | check_winner? game-sequence|
 |Deck        |  cards |  pop_out_card (to be dealt/drawn), shuffle_cards|
