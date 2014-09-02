@@ -4,7 +4,7 @@
   <title><![CDATA[Learning Ruby]]></title>
   <link href="http://ppj.github.io/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-02T23:07:35+10:00</updated>
+  <updated>2014-09-02T23:15:42+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -92,8 +92,6 @@
     <id>http://ppj.github.io/blog/2014/08/19/before_developing-my-first-object-oriented-application-notes-to-self</id>
     <content type="html"><![CDATA[<p>These are generic notes made when i learnt the basics of Object Oriented programming using Ruby.</p>
 
-<p>That&#39;s just some text to test the footnote extension of redcarpet.<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
-
 <!-- more -->
 
 <ul>
@@ -157,17 +155,6 @@ line of code.</p></li>
 </ul>
 
 <p>Note: The above method was put to use <a href="http://ppj.github.io/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack/">here</a></p>
-
-<div class="footnotes">
-<hr>
-<ol>
-
-<li id="fn1">
-<p>And that&#39;s the footnote.&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
-</li>
-
-</ol>
-</div>
 ]]></content>
   </entry>
   
