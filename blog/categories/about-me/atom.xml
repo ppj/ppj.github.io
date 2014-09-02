@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: About Me | Learning Ruby]]></title>
+  <link href="http://ppj.github.io/blog/categories/about-me/atom.xml" rel="self"/>
+  <link href="http://ppj.github.io/"/>
+  <updated>2014-09-02T23:07:35+10:00</updated>
+  <id>http://ppj.github.io/</id>
+  <author>
+    <name><![CDATA[Prasanna Joshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My First Blog Post!]]></title>
+    <link href="http://ppj.github.io/blog/2014/08/10/my-first-blog-post/"/>
+    <updated>2014-08-10T18:24:06+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/08/10/my-first-blog-post</id>
+    <content type="html"><![CDATA[<p>As the title suggests&#8230;</p>
+
+<!-- more -->
+
+<p>Some would say i am too late to jump on the bandwagon. In my defense, i am lazy!</p>
+
+<p>What made me start writing a blog is this Ruby (and Rails) programming course series from <a href="http://www.gotealeaf.com/">TeaLeaf</a>. At the time of writing this, I am almost about to finish the first of the three courses.</p>
+
+<p>So, at least to start with, i will be writing mostly about my learnings during the course(s) and related stuff, posting links to websites, screen-casts that i find interesting, and of course, my 2 cents about the related stuff.</p>
+
+<p>As i start out, the primary aim for this blog would be to serve me (and other similarly-abled people) as a reference to the tips/tricks i would be learning and discovering as i progress. Nothing more to that, i guess. But who knows, it might have a bit of digression every once in a while.</p>
+]]></content>
+  </entry>
+  
+</feed>

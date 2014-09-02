@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Before Developing My First Object Oriented Application: Notes to Self - Learning Ruby</title>
+  <title>How to Start Writing a (Procedural) Program - Learning Ruby</title>
   <meta name="author" content="Prasanna Joshi">
 
   
-  <meta name="description" content="These are generic notes made when i learnt the basics of Object Oriented programming using Ruby. That&#39;s just some text to test the footnote &hellip;">
+  <meta name="description" content="I have starter trouble... always. I either spend way too much time &#39;planning&#39; and &#39;collecting information&#39; when i want to start &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ppj.github.io/blog/2014/08/19/before_developing-my-first-object-oriented-application-notes-to-self">
+  <link rel="canonical" href="http://ppj.github.io/blog/2014/08/18/how-to-start-writing-a-procedural-program">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Learning Ruby" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Before Developing My First Object Oriented Application: Notes to Self</h1>
+      <h1 class="entry-title">How to Start Writing a (Procedural) Program</h1>
     
     
       <p class="meta">
@@ -77,24 +77,26 @@
 
 
 
-<time class='entry-date' datetime='2014-08-19T13:23:18+10:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:23 pm</span></time>
+<time class='entry-date' datetime='2014-08-18T13:13:27+10:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:13 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>These are generic notes made when i learnt the basics of Object Oriented programming using Ruby.</p>
+<div class="entry-content"><p>I have starter trouble&#8230; always. I either spend way too much time &#39;planning&#39; and &#39;collecting information&#39; when i want to start something new, or, the other extreme (but less often), just dive right into it and then suffer due to under preparation.</p>
 
-<p>That&#39;s just some text to test the footnote extension of redcarpet.<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+<p>The fundamental technique i learnt during the first course in the first <a href="http://www.gotealeaf.com/">TeaLeaf</a> course on Ruby basics was how to start writing a program. In other words, how much preparation is just enough to start writing a procedural program.</p>
 
-<!-- more -->
+<p>A quick side-note: Although, procedural programming is (almost) a thing of the past, and all for the right reasons, it is still a great way to start learning programming IMO. The primary reason, i believe, is our brains are wired to think sequentially or serially: first do this, then get the result, then do that&#8230; and so on. At least mine is.</p>
 
-<ul>
-<li>Modules can reference public instance methods of the class, for e.g.</li>
-</ul>
+<p>So to get over that starting trouble, the technique to start writing a program that best helped me is writing psuedo-code. &quot;Pseudo&quot; as in made up syntax, not bother about whether it will run, because it will not! The psuedo-code is almost plain English, or very close to it. Just enough to guide you in writing the actual code.</p>
 
-<figure class='code'><figcaption><span>Modules Referencing Instance Methods</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>Just jot down the logical steps (loops, conditionals, operations) you think are required to solve the programming problem. One rule i stuck to when doing this exercise is: use consistent indentation for readability.</p>
+
+<p>As an example, this is the psuedo code i wrote for a console-based player-vs-computer Tic-Tac-Toe game:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -107,61 +109,39 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Walkable</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">walk</span>
-</span><span class='line'>    <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> is walking&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Class</span> <span class="no">Dog</span>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Walkable</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@name</span> <span class="o">=</span> <span class="n">n</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Start with an empty 3x3 board
+</span><span class='line'>until board full or winner
+</span><span class='line'>  ask player to chose empty square to mark his/her 'X'
+</span><span class='line'>  display board
+</span><span class='line'>  if player won?
+</span><span class='line'>    announce winner and end game
+</span><span class='line'>  else if board full?
+</span><span class='line'>    end game
+</span><span class='line'>  else
+</span><span class='line'>    generate a random number and let the computer choose an empty square to mark its 'O'
+</span><span class='line'>  end
+</span><span class='line'>  display board
+</span><span class='line'>  if computer won
+</span><span class='line'>    announce winner and end game
+</span><span class='line'>  elsif board full?
+</span><span class='line'>    end game
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
-<p>The above will work ONLY if the class that implements the module Walkable has a public method <code>name</code> (which is a getter in this case).
-<em>It is a good practice to put a comment to that effect where the module is defined.</em></p>
-
-<ul>
-<li><p>Only two things evaluate to the boolean <code>false</code> in Ruby, they are a null object <code>nil</code> and <code>false</code></p></li>
-<li><p>Every expression returns something in Ruby.
-The return value is shown after an hash-rocket sign <code>=&gt;</code> in an IRB session after executing a
-line of code.</p></li>
-<li><p>It&#39;s a good idea to just return a string from a method and then using <code>puts</code> on the method call to display the desired string rather than doing a <code>puts</code> in the method itself.</p></li>
-</ul>
-
-<ul>
- <li><a href='http://www.skorks.com/2009/09/ruby-exceptions-and-exception-handling'>Exceptions in Ruby</a></li>
- <ul>
- <li><a href='http://stackoverflow.com/questions/1485114/ruby-constructors-and-exceptions'>Raising exceptions during object instansiation</a></li>
- </ul>
-</ul>
+<div>Some features of this technique are:</div>
 
 <ul>
-<li>A good way to start developing/design an OO application is following the steps below:
-
-<ol>
-<li>Write the problem statement for the application</li>
-<li>Extract nouns from the problem statement: can be good indicators for required classes</li>
-<li>Extract verbs and associate them with the nouns: can be good indicators of required methods and responsibilities</li>
-</ol></li>
+<li>it highlights my logic of developing a solution</li>
+<li>it helps to keep focus on the current coding task</li>
+<li>it helps to bring focus back to the next coding task if the previous one took longer than normal for whatever reasons (new language, syntactical errors)</li>
+<li>it need not be perfect (or updated all the time for small changes in the actual implementation)</li>
+<li>The final Ruby code for this simple application (if it can be called that!) can be found <a href="https://github.com/ppj/tealeaf1_Lesson1/blob/master/tic_tac_toe.rb">here</a> </li>
 </ul>
-
-<p>Note: The above method was put to use <a href="/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack/">here</a></p>
-
-<div class="footnotes">
-<hr>
-<ol>
-
-<li id="fn1">
-<p>And that&#39;s the footnote.&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
-</li>
-
-</ol>
-</div>
 </div>
 
 
@@ -177,8 +157,14 @@ line of code.</p></li>
 
 
 
-<time class='entry-date' datetime='2014-08-19T13:23:18+10:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:23 pm</span></time>
+<time class='entry-date' datetime='2014-08-18T13:13:27+10:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:13 pm</span></time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/beginner/'>beginner</a>, <a class='category' href='/blog/categories/procedural-programming/'>procedural programming</a>
+  
+</span>
 
 
     </p>
@@ -196,10 +182,10 @@ line of code.</p></li>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/08/18/how-to-start-writing-a-procedural-program/" title="Previous Post: How To Start Writing a (Procedural) Program">&laquo; How To Start Writing a (Procedural) Program</a>
+        <a class="basic-alignment left" href="/blog/2014/08/11/debugging-ruby-code-with-the-pry-gem/" title="Previous Post: Debugging Ruby Code With the Pry Gem">&laquo; Debugging Ruby Code With the Pry Gem</a>
       
       
-        <a class="basic-alignment right" href="/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack/" title="Next Post: My first Object Oriented Application(s): Console Based Black Jack">My first Object Oriented Application(s): Console Based Black Jack &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2014/08/19/before_developing-my-first-object-oriented-application-notes-to-self/" title="Next Post: Before Developing My First Object Oriented Application: Notes To Self">Before Developing My First Object Oriented Application: Notes To Self &raquo;</a>
       
     </p>
   </footer>

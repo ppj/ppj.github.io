@@ -4,7 +4,7 @@
   <title><![CDATA[Learning Ruby]]></title>
   <link href="http://ppj.github.io/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-02T16:44:32+10:00</updated>
+  <updated>2014-09-02T23:07:35+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -168,6 +168,151 @@ line of code.</p></li>
 
 </ol>
 </div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Start Writing a (Procedural) Program]]></title>
+    <link href="http://ppj.github.io/blog/2014/08/18/how-to-start-writing-a-procedural-program/"/>
+    <updated>2014-08-18T13:13:27+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/08/18/how-to-start-writing-a-procedural-program</id>
+    <content type="html"><![CDATA[<p>I have starter trouble&#8230; always. I either spend way too much time &#39;planning&#39; and &#39;collecting information&#39; when i want to start something new, or, the other extreme (but less often), just dive right into it and then suffer due to under preparation.</p>
+
+<p>The fundamental technique i learnt during the first course in the first <a href="http://www.gotealeaf.com/">TeaLeaf</a> course on Ruby basics was how to start writing a program. In other words, how much preparation is just enough to start writing a procedural program.</p>
+
+<p>A quick side-note: Although, procedural programming is (almost) a thing of the past, and all for the right reasons, it is still a great way to start learning programming IMO. The primary reason, i believe, is our brains are wired to think sequentially or serially: first do this, then get the result, then do that&#8230; and so on. At least mine is.</p>
+
+<p>So to get over that starting trouble, the technique to start writing a program that best helped me is writing psuedo-code. &quot;Pseudo&quot; as in made up syntax, not bother about whether it will run, because it will not! The psuedo-code is almost plain English, or very close to it. Just enough to guide you in writing the actual code.</p>
+
+<p>Just jot down the logical steps (loops, conditionals, operations) you think are required to solve the programming problem. One rule i stuck to when doing this exercise is: use consistent indentation for readability.</p>
+
+<p>As an example, this is the psuedo code i wrote for a console-based player-vs-computer Tic-Tac-Toe game:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Start with an empty 3x3 board
+</span><span class='line'>until board full or winner
+</span><span class='line'>  ask player to chose empty square to mark his/her 'X'
+</span><span class='line'>  display board
+</span><span class='line'>  if player won?
+</span><span class='line'>    announce winner and end game
+</span><span class='line'>  else if board full?
+</span><span class='line'>    end game
+</span><span class='line'>  else
+</span><span class='line'>    generate a random number and let the computer choose an empty square to mark its 'O'
+</span><span class='line'>  end
+</span><span class='line'>  display board
+</span><span class='line'>  if computer won
+</span><span class='line'>    announce winner and end game
+</span><span class='line'>  elsif board full?
+</span><span class='line'>    end game
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+<div>Some features of this technique are:</div>
+
+<ul>
+<li>it highlights my logic of developing a solution</li>
+<li>it helps to keep focus on the current coding task</li>
+<li>it helps to bring focus back to the next coding task if the previous one took longer than normal for whatever reasons (new language, syntactical errors)</li>
+<li>it need not be perfect (or updated all the time for small changes in the actual implementation)</li>
+<li>The final Ruby code for this simple application (if it can be called that!) can be found <a href="https://github.com/ppj/tealeaf1_Lesson1/blob/master/tic_tac_toe.rb">here</a> </li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debugging Ruby Code With the Pry Gem]]></title>
+    <link href="http://ppj.github.io/blog/2014/08/11/debugging-ruby-code-with-the-pry-gem/"/>
+    <updated>2014-08-11T09:49:00+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/08/11/debugging-ruby-code-with-the-pry-gem</id>
+    <content type="html"><![CDATA[<p>This is a quick reference guide for using ‘pry’ gem for debugging Ruby code.</p>
+
+<!-- more -->
+
+<h3 class='no_extra_new_line'>Installation:</h3>
+
+<ul>
+<li><code>gem list pry</code>: lists whether it is already installed<br></li>
+<li><code>gem install pry</code>: installs the pry gem</li>
+</ul>
+
+<h3 class='no_extra_new_line'>Use:</h3>
+
+<ol>
+<li><code>require &#39;pry&#39;</code>
+
+<ul>
+<li>insert the above line at the top of the ruby file you intend to debug</li>
+</ul></li>
+<li><code>binding.pry</code>
+
+<ul>
+<li>insert the above line to stop execution at a particular point in the code</li>
+<li>insert this after the line where you want to pause the program execution</li>
+</ul></li>
+<li>run the program
+
+<ul>
+<li>type the debugging stuff (variable names, method names etc.) once the program pauses</li>
+</ul></li>
+<li><code>step</code>
+
+<ul>
+<li>type ‘step’ to go to the next line</li>
+</ul></li>
+<li>Ctrl+D
+
+<ul>
+<li>use the above key combo to move to the next ‘binding.pry’ statement in the program</li>
+</ul></li>
+</ol>
+
+<p><a href="http://knomedia.github.io/blog/2013/01/21/debugging-ruby-with-pry">Here’s a good screen cast</a> describing the debugging features of Pry.</p>
+
+<p>However, debugging is just one of the many things that can be done using Pry. One other main feature is replacing IRB. A good reference page (with screen-casts and all) can be found <a href="http://pryrepl.org/">here</a>.</p>
+
+<h3 class='no_extra_new_line'>Other useful links:</h3>
+
+<ul>
+<li><a href="https://rubygems.org/gems/pry-doc">Latest Pry &amp; Documentation</a></li>
+<li><a href="https://github.com/pry/pry/wiki">Pry WiKi on GitHub</a></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My First Blog Post!]]></title>
+    <link href="http://ppj.github.io/blog/2014/08/10/my-first-blog-post/"/>
+    <updated>2014-08-10T18:24:06+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/08/10/my-first-blog-post</id>
+    <content type="html"><![CDATA[<p>As the title suggests&#8230;</p>
+
+<!-- more -->
+
+<p>Some would say i am too late to jump on the bandwagon. In my defense, i am lazy!</p>
+
+<p>What made me start writing a blog is this Ruby (and Rails) programming course series from <a href="http://www.gotealeaf.com/">TeaLeaf</a>. At the time of writing this, I am almost about to finish the first of the three courses.</p>
+
+<p>So, at least to start with, i will be writing mostly about my learnings during the course(s) and related stuff, posting links to websites, screen-casts that i find interesting, and of course, my 2 cents about the related stuff.</p>
+
+<p>As i start out, the primary aim for this blog would be to serve me (and other similarly-abled people) as a reference to the tips/tricks i would be learning and discovering as i progress. Nothing more to that, i guess. But who knows, it might have a bit of digression every once in a while.</p>
 ]]></content>
   </entry>
   
