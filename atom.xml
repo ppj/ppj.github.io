@@ -1,16 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[Learning Ruby]]></title>
   <link href="http://ppj.github.io/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-02T16:30:14+10:00</updated>
+  <updated>2014-09-02T16:44:32+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Prasanna Joshi]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My First Object Oriented Application(s): Console Based Black Jack]]></title>
+    <link href="http://ppj.github.io/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack/"/>
+    <updated>2014-09-01T13:36:33+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack</id>
+    <content type="html"><![CDATA[<p>Before i developed the console-based Black Jack, i tried developing a slightly simpler game, also console based: Tic-Tac-Toe. Here are the problem statements for both the apps:</p>
+
+<!-- more -->
+
+<h2 id="problem-statement-for-tic-tac-toe:">Problem Statement for Tic-Tac-Toe:</h2>
+
+<p>On an empty board of 3x3 squares, a player and the computer (or another player) pick empty squares to put their <code>X</code> or <code>O</code> (symbols) in. The first one to have their symbols in a row (or column or diagonal) of 3 wins.</p>
+
+<h3 id="extracted-nouns:">Extracted Nouns:</h3>
+
+<ul>
+<li>Board</li>
+<li>Square( or Position )</li>
+<li>Player (this would also address the other player/computer?)</li>
+<li>Game (that would be the engine)</li>
+</ul>
+
+<p>Note: The Tic-Tac-Toe code can be a perfect foundation for a &quot;connect-4&quot; game!
+  &#8230; or even a &#39;expandable&#39; version of Tic-Tac-Toe (4x4, 5x5, etc.)!!</p>
+
+<h2 id="problem-statement-for-blackjack:">Problem Statement for BlackJack:</h2>
+
+<p>BlackJack is a card game played between a dealer and player(s). The dealer starts out with dealing 2 cards from a deck to each player. A player wins if he/she hits a BlackJack (score of 21), unless the dealer has also hit a BlackJack. If neither have hit a BlackJack, player can choose to hit (get dealt another card) till he/she decides to stop/stay, scores 21, or loses (scores more than 21). If the player decides to stay (i.e. &lt; 21), next player chooses to hit or stay. If no player hits a BlackJack, dealer can choose to hit (draw one card at a time) till he/she loses (&gt;21), reaches 17, or wins (hits BlackJack). If dealer reaches anywhere between (&gt;=) 17 and (&lt;) 21, the highest scorer wins.</p>
+
+<h3 id="class-design:">Class Design:</h3>
+
+<table><thead>
+<tr>
+<th>Nouns</th>
+<th>properties</th>
+<th>behaviours</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BlackJack</td>
+<td>dealer, Player, Deck</td>
+<td>check_winner? game-sequence</td>
+</tr>
+<tr>
+<td>Deck</td>
+<td>cards</td>
+<td>pop_out_card (to be dealt/drawn), shuffle_cards</td>
+</tr>
+<tr>
+<td>Card</td>
+<td>suit, denomination</td>
+<td>value</td>
+</tr>
+<tr>
+<td>Dealer</td>
+<td>hand(of cards)</td>
+<td>deal_card (or/and draw_card to self), hit, stay</td>
+</tr>
+<tr>
+<td>Player</td>
+<td>hand(of cards)</td>
+<td>hit, stay</td>
+</tr>
+<tr>
+<td>Hand</td>
+<td>cards, total</td>
+<td>calculate_total, busted?, display</td>
+</tr>
+</tbody></table>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Before Developing My First Object Oriented Application: Notes to Self]]></title>
+    <link href="http://ppj.github.io/blog/2014/08/19/before_developing-my-first-object-oriented-application-notes-to-self/"/>
+    <updated>2014-08-19T13:23:18+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/08/19/before_developing-my-first-object-oriented-application-notes-to-self</id>
+    <content type="html"><![CDATA[<p>These are generic notes made when i learnt the basics of Object Oriented programming using Ruby.</p>
+
+<p>That&#39;s just some text to test the footnote extension of redcarpet.<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+
+<!-- more -->
+
+<ul>
+<li>Modules can reference public instance methods of the class, for e.g.</li>
+</ul>
+
+<figure class='code'><figcaption><span>Modules Referencing Instance Methods</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Walkable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">walk</span>
+</span><span class='line'>    <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> is walking&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Class</span> <span class="no">Dog</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Walkable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@name</span> <span class="o">=</span> <span class="n">n</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>The above will work ONLY if the class that implements the module Walkable has a public method <code>name</code> (which is a getter in this case).
+<em>It is a good practice to put a comment to that effect where the module is defined.</em></p>
+
+<ul>
+<li><p>Only two things evaluate to the boolean <code>false</code> in Ruby, they are a null object <code>nil</code> and <code>false</code></p></li>
+<li><p>Every expression returns something in Ruby.
+The return value is shown after an hash-rocket sign <code>=&gt;</code> in an IRB session after executing a
+line of code.</p></li>
+<li><p>It&#39;s a good idea to just return a string from a method and then using <code>puts</code> on the method call to display the desired string rather than doing a <code>puts</code> in the method itself.</p></li>
+</ul>
+
+<ul>
+ <li><a href='http://www.skorks.com/2009/09/ruby-exceptions-and-exception-handling'>Exceptions in Ruby</a></li>
+ <ul>
+ <li><a href='http://stackoverflow.com/questions/1485114/ruby-constructors-and-exceptions'>Raising exceptions during object instansiation</a></li>
+ </ul>
+</ul>
+
+<ul>
+<li>A good way to start developing/design an OO application is following the steps below:
+
+<ol>
+<li>Write the problem statement for the application</li>
+<li>Extract nouns from the problem statement: can be good indicators for required classes</li>
+<li>Extract verbs and associate them with the nouns: can be good indicators of required methods and responsibilities</li>
+</ol></li>
+</ul>
+
+<p>Note: The above method was put to use <a href="http://ppj.github.io/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack/">here</a></p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>And that&#39;s the footnote.&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+]]></content>
+  </entry>
   
 </feed>
