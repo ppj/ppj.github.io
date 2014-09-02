@@ -8,8 +8,6 @@ categories:
 
 These are generic notes made when i learnt the basics of Object Oriented programming using Ruby.
 
-That's just some text to test the footnote extension of redcarpet.[^1]
-
 <!-- more -->
 
 - Modules can reference public instance methods of the class, for e.g.
@@ -54,5 +52,3 @@ The return value is shown after an hash-rocket sign ```=>``` in an IRB session a
   3. Extract verbs and associate them with the nouns: can be good indicators of required methods and responsibilities
 
 Note: The above method was put to use [here](/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack/)
-
-[^1]: And that's the footnote.
