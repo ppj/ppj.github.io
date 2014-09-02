@@ -1,9 +1,18 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
 
-ul, ol {  //THERE MAY BE OTHER ELEMENTS IN THE LIST
+ul {  //THERE MAY BE OTHER ELEMENTS IN THE LIST
   margin-left:20px;
   padding:0;
+}
+
+ol {  //THERE MAY BE OTHER ELEMENTS IN THE LIST
+  margin-left:25px;
+  padding:0;
+}
+
+.no_extra_new_line {
+  margin-bottom: 0;
 }
 
 table {
