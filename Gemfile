@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-require 'rbconfig'
-if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
- gem 'wdm', '>= 0.1.0'
-end
+# require 'rbconfig'
+# if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
+#  gem 'wdm', '>= 0.1.0'
+# end
 
 group :development do
   gem 'rake', '~> 10.0'
