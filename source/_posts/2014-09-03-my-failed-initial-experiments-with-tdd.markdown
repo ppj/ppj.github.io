@@ -1,0 +1,27 @@
+---
+layout: post
+title: "My (Failed) Initial Experiments with TDD"
+date: 2014-09-03 12:10:14 +1000
+comments: true
+categories: 
+  - TDD
+  - beginner
+---
+
+My better-half is a software developer with a rich experience of 10+ years. She absolutely swears by Test Driven Development (TDD). And seems to have all the right reasons for preaching it, as far as my limited knowledge goes. I read up a bit about it and watched a few screen casts too.
+
+<!-- more -->
+
+So when i was to start developing the object oriented console-based BlackJack game, i thought i'd give it a shot. After all this was technically my 2nd go at developing an OO application (the TicTacToe game was the first)!
+
+I installed the rspec gem, enabled color display for my PowerShell (yes i use Windows!) to actually *feel* the *red-green*-refactor cycle! I was all set. Or so i thought. I started with writing the tests for the most fundamental of the classes my problem statement gave me, the Card class. I had read that TDD is much more than writing tests first. Primarily, it should lead to evolvution your application design, and that, adhering to the SOLID principles of object oriented design. And that's where the problems began.
+
+I had also read the theory about the five Object Oriented Design Principles (SOLID). Also, how it can (is supposed to) ensure low-coupling and high-cohesion between classes. This is where my inexperience in OOP started showing up. 
+
+I forced myself to move from the Card class to the Deck class. I continued using TDD to develop it. But i just could not use TDD to continue to develop the app! I could not see how TDD would help me take the program further! I even asked my wife to show me how she would do it (for a couple of sessions at least). That didn't help much either.
+
+Finally after much frustration, arguments and some more reading up i decided not to muddle my learning with TDD *for now*.
+
+One article that helped me reach this conclusion: [**The Failures of "Intro to TDD"**](http://blog.testdouble.com/posts/2014-01-25-the-failures-of-intro-to-tdd.html). Especially the introduction and the last two sections.
+
+Also, my course instructor at TeaLeaf helped me understand the reasons of not using TDD at an early stage of learning OOP... which are what i have talked about above. I will not experiment much with it before i start the third course which talks in depth about the SOLID principles. Moreover, it is expected to be completed using TDD through-out.
