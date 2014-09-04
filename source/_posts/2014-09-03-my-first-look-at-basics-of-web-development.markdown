@@ -4,12 +4,12 @@ title: "My First Look At Basics of Web Development"
 date: 2014-09-03 14:40:34 +1000
 comments: true
 categories:
-  - http
-  - html
-  - css
-  - sinatra
+  - HTTP
+  - HTML
+  - CSS
+  - Sinatra
 ---
-This calls for a brief pause from learning/practising OOP. The focus of this exercise is getting to know the underlying concepts of how the web works.
+This calls for a brief pause from learning/practicing OOP. The focus of this exercise is getting to know the underlying concepts of how the web works.
 
 <!-- more -->
 
@@ -21,10 +21,10 @@ This calls for a brief pause from learning/practising OOP. The focus of this exe
 
 <div>At the end of this exercise, I should have a fair idea about...</div>
 - how the web server handles the requests from the client (typically, a web browser)
-- how the web servier issues responses back to the client
-- how to simulate a stateful experience using a stateless protocol using browser cookies  
+- how the web server issues responses back to the client
+- how to simulate a 'stateful' experience using a stateless protocol using browser cookies  
 The more traditional way is to use a database, but that is a bigger topic which is why it should be avoided for now.
 
-Once i familiriaze myself with the above, i should put the knowledge to use by developing a web-version of...  
+Once i familiarize myself with the above, i should put the knowledge to use by developing a web-version of ...  
 ...... drum-roll .....  
 yes ...... the BlackJack game!
