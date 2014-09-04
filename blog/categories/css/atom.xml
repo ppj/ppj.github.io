@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Css | Learning Ruby]]></title>
+  <link href="http://ppj.github.io/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://ppj.github.io/"/>
+  <updated>2014-09-04T11:34:36+10:00</updated>
+  <id>http://ppj.github.io/</id>
+  <author>
+    <name><![CDATA[Prasanna Joshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My First Look at Basics of Web Development]]></title>
+    <link href="http://ppj.github.io/blog/2014/09/03/my-first-look-at-basics-of-web-development/"/>
+    <updated>2014-09-03T14:40:34+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/09/03/my-first-look-at-basics-of-web-development</id>
+    <content type="html"><![CDATA[<p>This called for a brief pause from learning/practising OOP. The focus of this exercise was getting to know the underlying concepts of how the web works.</p>
+
+<!-- more -->
+
+<div>I got acquainted with the following:</div>
+
+<ul>
+<li><a href="http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177">HTTP</a></li>
+<li><a href="http://www.codecademy.com/tracks/htmlcss">HTML &amp; CSS</a></li>
+<li><a href="http://www.sinatrarb.com/intro.html">Sinatra</a></li>
+<li><a href="http://d1b1wr57ag5rdp.cloudfront.net/web_solutions/sinatra_mvc_request_response.pdf">Request/Response MVC</a></li>
+<li><a href="http://lmgtfy.com/?q=JavaScript">JavaScript</a></li>
+<li><a href="http://lmgtfy.com/?q=Ajax">Ajax</a></li>
+</ul>
+
+<p>To summarize:
+I got an idea of how to simulate a stateful experience for the users of the web app using a stateless protocol using cookies. The more traditional way is to use a database, but that is a bigger topic which is why it was avoided for now.</p>
+
+<p>I understood the basics of how the web server handles the requests from the client (typically, a web browser) and issues responses back to the client.</p>
+
+<p>Now it was time to put it to use by developing a web-version of&#8230;<br>
+&#8230;&#8230; drum-roll &#8230;..<br>
+yes &#8230;&#8230; the BlackJack game!</p>
+]]></content>
+  </entry>
+  
+</feed>
