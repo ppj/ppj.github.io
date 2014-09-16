@@ -4,7 +4,7 @@
   <title><![CDATA[Learning Ruby]]></title>
   <link href="http://ppj.github.io/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-04T17:36:07+10:00</updated>
+  <updated>2014-09-16T13:47:47+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails References]]></title>
+    <link href="http://ppj.github.io/blog/2014/09/16/rails-references/"/>
+    <updated>2014-09-16T10:15:46+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/09/16/rails-references</id>
+    <content type="html"><![CDATA[<p>I just started the <a href="http://www.gotealeaf.com/curriculum#!rails">second</a> of the 3 <a href="http://www.gotealeaf.com/">TeaLeaf</a> courses for back-end web-application development using Ruby on Rails.</p>
+
+<!-- more -->
+
+<p>The last exercise in Course 1 was an introduction to web-app development in Ruby using the Sinatra framework. Rails, as I understand so far, is a much more intense framework as compared to Sinatra. So, it has a much steeper learning curve. All the more true, for a web-app newbie.</p>
+
+<div>Here, I have listed some resources to start learning and revising my Rails knowledge:</div>
+
+<ol>
+<li><div><a href='http://guides.rubyonrails.org/getting_started.html'>The getting started guide</a>: This is great for as a first-time Rails tutorial&#8230; just power through as many things will not make much sense! This page has links to more detailed descriptions of the concepts; some important ones are:</div>
+
+<ul>
+<li><a href="http://guides.rubyonrails.org/migrations.html">Rails Database Migrations</a></li>
+<li><a href="http://guides.rubyonrails.org/layouts_and_rendering.html">Layouts And Rendering In Rails</a></li>
+<li><a href="http://guides.rubyonrails.org/association_basics.html">Active Record Associations</a></li>
+</ul></li>
+<li><p><a href="https://www.railstutorial.org/book">The Rails Tutorial (Book)</a>: A good comprehensive tutorial for beginners and also to refresh the Rails basics!</p></li>
+</ol>
+
+<h3 class='no_extra_new_line'>Related Repos:</h3>
+
+<ul>
+<li><a href="https://github.com/ppj/railsBlog">Rails Blog</a></li>
+<li><a href="https://github.com/ppj/railsAssociationsTrial">Rails Association Trials</a></li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Developing Web-based BlackJack]]></title>

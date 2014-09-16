@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://ppj.github.io/blog/2014/09/16/rails-references/</loc>
+    <lastmod>2014-09-16T10:15:46+10:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://ppj.github.io/blog/2014/09/04/developing-web-based-blackjack/</loc>
     <lastmod>2014-09-04T12:24:46+10:00</lastmod>
     <priority>0.8</priority>
@@ -53,14 +59,14 @@
   
   <url>
     <loc>http://ppj.github.io/blog/archives/</loc>
-    <lastmod>2014-09-04T17:36:07+10:00</lastmod>
+    <lastmod>2014-09-16T13:47:42+10:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://ppj.github.io/</loc>
-    <lastmod>2014-09-04T17:36:07+10:00</lastmod>
+    <lastmod>2014-09-16T13:47:42+10:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
