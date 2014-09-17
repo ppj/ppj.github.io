@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tutorial | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/tutorial/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-16T13:47:42+10:00</updated>
+  <updated>2014-09-17T14:38:11+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -42,6 +42,27 @@
 <ul>
 <li><a href="https://github.com/ppj/railsBlog">Rails Blog</a></li>
 <li><a href="https://github.com/ppj/railsAssociationsTrial">Rails Association Trials</a></li>
+</ul>
+
+<h3 class='no_extra_new_line'>Major Takeaways:</h3>
+
+<ul>
+<li>The first few things to look at in a pre-existing Rails app&#39;s code
+
+<ul>
+<li>./Gemfile: Gives an idea of the complexity of the app based on the variety of gems it depends on</li>
+<li>./config/routes.rb: Has code to generate various routes the app has</li>
+<li>use <code>rake routes</code> or <APP_HOMEPAGE>\rails\info route to list various routes</li>
+<li>./config/database.yml: database related info </li>
+</ul></li>
+<li>Rails has a lot of &quot;magic&quot; going on in the background owing mainly to its conventions (expectations and auto creation of files &amp; code based on a single line of code / shell command)</li>
+<li>For the same reason, lot of hands-on practice would be needed to get used to all (or most) things going on in rails, ranging from folder &amp; file structure to more advanced features</li>
+<li><code>rails generate ...</code> should be used sparingly as it can be confusing and/or redundant (generates lot of unnecessary files/code)</li>
+<li>no data from the database is actually pushed to Git (.gitignore file is set to ignore the default db&#39;s &#39;.sqlite3&#39; files for git operations)
+
+<ul>
+<li>the migration file and schema.rb which is modified by the <code>rake db:migrate</code> command is what goes into the repository</li>
+</ul></li>
 </ul>
 ]]></content>
   </entry>
