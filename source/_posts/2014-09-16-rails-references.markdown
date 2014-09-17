@@ -25,3 +25,16 @@ The last exercise in Course 1 was an introduction to web-app development in Ruby
 <h3 class='no_extra_new_line'>Related Repos:</h3>
 - [Rails Blog](https://github.com/ppj/railsBlog)
 - [Rails Association Trials](https://github.com/ppj/railsAssociationsTrial)
+
+<h3 class='no_extra_new_line'>Major Takeaways:</h3>
+- The first few things to look at in a pre-existing Rails app's code
+  - ./Gemfile: Gives an idea of the complexity of the app based on the variety of gems it depends on
+  - ./config/routes.rb: Has code to generate various routes the app has
+  - use `rake routes` or <APP_HOMEPAGE>\rails\info route to list various routes
+  - ./config/database.yml: database related info 
+- Rails has a lot of "magic" going on in the background owing mainly to its conventions (expectations and auto creation of files & code based on a single line of code / shell command)
+- For the same reason, lot of hands-on practice would be needed to get used to all (or most) things going on in rails, ranging from folder & file structure to more advanced features
+- `rails generate ...` should be used sparingly as it can be confusing and/or redundant (generates lot of unnecessary files/code)
+- no data from the database is actually pushed to Git (.gitignore file is set to ignore the default db's '.sqlite3' files for git operations)
+  - the migration file and schema.rb which is modified by the `rake db:migrate` command is what goes into the repository
+
