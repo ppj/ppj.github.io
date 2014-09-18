@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tealeaf | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/tealeaf/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-17T14:38:11+10:00</updated>
+  <updated>2014-09-18T14:02:23+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -24,25 +24,7 @@
 
 <p>The last exercise in Course 1 was an introduction to web-app development in Ruby using the Sinatra framework. Rails, as I understand so far, is a much more intense framework as compared to Sinatra. So, it has a much steeper learning curve. All the more true, for a web-app newbie.</p>
 
-<div>Here, I have listed some resources to start learning and revising my Rails knowledge:</div>
-
-<ol>
-<li><div><a href='http://guides.rubyonrails.org/getting_started.html'>The getting started guide</a>: This is great for as a first-time Rails tutorial&#8230; just power through as many things will not make much sense! This page has links to more detailed descriptions of the concepts; some important ones are:</div>
-
-<ul>
-<li><a href="http://guides.rubyonrails.org/migrations.html">Rails Database Migrations</a></li>
-<li><a href="http://guides.rubyonrails.org/layouts_and_rendering.html">Layouts And Rendering In Rails</a></li>
-<li><a href="http://guides.rubyonrails.org/association_basics.html">Active Record Associations</a></li>
-</ul></li>
-<li><p><a href="https://www.railstutorial.org/book">The Rails Tutorial (Book)</a>: A good comprehensive tutorial for beginners and also to refresh the Rails basics!</p></li>
-</ol>
-
-<h3 class='no_extra_new_line'>Related Repos:</h3>
-
-<ul>
-<li><a href="https://github.com/ppj/railsBlog">Rails Blog</a></li>
-<li><a href="https://github.com/ppj/railsAssociationsTrial">Rails Association Trials</a></li>
-</ul>
+<p>Listed below are some of the key notes i made as i went through the precourse material and attempted the exercises.</p>
 
 <h3 class='no_extra_new_line'>Major Takeaways:</h3>
 
@@ -50,6 +32,7 @@
 <li>The first few things to look at in a pre-existing Rails app&#39;s code
 
 <ul>
+<li>.README.markdown</li>
 <li>./Gemfile: Gives an idea of the complexity of the app based on the variety of gems it depends on</li>
 <li>./config/routes.rb: Has code to generate various routes the app has</li>
 <li>use <code>rake routes</code> or <APP_HOMEPAGE>\rails\info route to list various routes</li>
@@ -63,6 +46,26 @@
 <ul>
 <li>the migration file and schema.rb which is modified by the <code>rake db:migrate</code> command is what goes into the repository</li>
 </ul></li>
+</ul>
+
+<h3 class='no_extra_new_line'>Learning Resources:</h3>
+
+<ol>
+<li><div><a href='http://guides.rubyonrails.org/getting_started.html'>The getting started guide</a>: This is pretty good as a first-time Rails tutorial&#8230; i just powered through as many questions were raised following the steps listed! The page has links to more detailed descriptions of the concepts; some important ones are:</div>
+
+<ul>
+<li><a href="http://guides.rubyonrails.org/migrations.html">Rails Database Migrations</a></li>
+<li><a href="http://guides.rubyonrails.org/layouts_and_rendering.html">Layouts And Rendering In Rails</a></li>
+<li><a href="http://guides.rubyonrails.org/association_basics.html">Active Record Associations</a></li>
+</ul></li>
+<li><a href="https://www.railstutorial.org/book">The Rails Tutorial (Book)</a>: This looks like a good comprehensive tutorial and i plan to use it to refresh my Rails knowledge a while after i finish the course!</li>
+</ol>
+
+<h3 class='no_extra_new_line'>Related Repos:</h3>
+
+<ul>
+<li><a href="https://github.com/ppj/railsBlog">Rails Blog</a></li>
+<li><a href="https://github.com/ppj/railsAssociationsTrial">Rails 1-Many and Many-Many Association Trials</a></li>
 </ul>
 ]]></content>
   </entry>
