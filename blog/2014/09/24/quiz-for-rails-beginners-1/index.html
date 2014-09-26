@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Quiz for Rails Beginners - 1 - Learning Ruby</title>
+  <meta name="author" content="Prasanna Joshi">
+
+  
+  <meta name="description" content="Here&#39;s a quiz for people who are just getting started learning web-application development. Most questions are specific to Rails, others are &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ppj.github.io/blog/2014/09/24/quiz-for-rails-beginners-1">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Learning Ruby" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Learning Ruby</a></h1>
+  
+    <h2>Reference, Mnemonic & Ramblings</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ppj.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Quiz for Rails Beginners - 1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-24T11:56:38+10:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:56 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Here&#39;s a quiz for people who are just getting started learning web-application development. Most questions are specific to Rails, others are generic. Each question is a link pointing to my corresponding answer as i understand the concepts the today.</p>
+
+<!-- more -->
+
+<ol>
+<li><p><a name='q1'></a><a href="#a1">Why do they call it a relational database?</a></p></li>
+<li><p><a name='q2'></a><a href="#a2">What is SQL?</a></p></li>
+<li><p><a name='q3'></a><a href="#a3">There are two predominant views into a relational database. What are they, and how are they different?</a></p></li>
+<li><p><a name='q4'></a><a href="#a4">In a table, what do we call the column that serves as the main identifier for a row of data? We&#39;re looking for the general database term, not the column name.</a></p></li>
+<li><p><a name='q5'></a><a href="#a5">What is a foreign key, and how is it used?</a></p></li>
+<li><p><a name='q6'></a><a href="#a6">At a high level, describe the ActiveRecord pattern. This has nothing to do with Rails, but the actual pattern that ActiveRecord uses to perform its ORM duties.</a></p></li>
+<li><p><a name='q7'></a><a href="#a7">If there&#39;s an ActiveRecord model called &quot;CrazyMonkey&quot;, what should the table name be?</a></p></li>
+<li><p><a name='q8'></a><a href="#a8">If I&#39;m building a 1:M association between Project and Issue, what will the model associations and foreign key be?</a></p></li>
+<li><p><a name='q9'></a><div class='no_extra_line'>Given this code</div>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="k">class</span> <span class="nc">Zoo</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:animals</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<ul>
+<li><a href="#a9">What do you expect the other model to be and what does database schema look like?</a></li>
+<li><a href="#a9.2">What are the methods that are now available to a zoo to call related to animals?</a></li>
+<li><a href="#a9.3">How do I create an animal called &quot;jumpster&quot; in a zoo called &quot;San Diego Zoo&quot;?</a>
+<br/><br/></li>
+</ul></li>
+<li><p><a name='q10'></a><a href="#a10">What is mass assignment? What&#39;s the non-mass assignment way of setting values?</a></p></li>
+<li><p><a name='q11'></a><a href="#a11">What does this code do?</a> <code>Animal.first</code></p></li>
+<li><p><a name='q12'></a><a href="#a12">If I have a table called &quot;animals&quot; with columns called &quot;name&quot;, and a model called Animal, how do I instantiate an animal object with name set to &quot;Joe&quot;. Which methods makes sure it saves to the database?</a></p></li>
+<li><p><a name='q13'></a><a href="#a13">How does a M:M association work at the database level?</a></p></li>
+<li><p><a name='q14'></a><a href="#a14">What are the two ways to support a M:M association at the ActiveRecord model level? Pros and cons of each approach?</a></p></li>
+<li><p><a name='q15'></a><a href="#a15">Suppose we have a User model and a Group model, and we have a M:M association all set up. How do we associate the two?</a></p></li>
+</ol>
+
+<h3 id="my-answers:">MY ANSWERS:</h3>
+
+<p><a name='a1'></a>
+<strong>A1</strong>: The way data is represented in tuples (ordered list or array) of attribute-values that are grouped in a <a href="http://en.wikipedia.org/wiki/Relation_(database)">relation</a> (tuple with attribute/title/header) makes this database a relational database. <a href="http://en.wikipedia.org/wiki/Relational_model">Source</a><br>
+<a href="#q1">Back</a></p>
+
+<p><a name='a2'></a>
+<strong>A2</strong>: Structured Query Language is a language to create, read, update, and destroy information in a Relational Database.<br>
+<a href="#q2">Back</a></p>
+
+<p><a name='a3'></a>
+<div><strong>A3</strong>:</div>
+<ul><li> The <strong>schema view</strong> shows what columns are in a table and what type of data (string/integer/boolean/&#8230;) each columns can store</li>
+<li> The <strong>data view</strong> shows the actual table with the data that is currently stored in it (like a spreadsheet view)</li></ul>
+<a href="#q3">Back</a></p>
+
+<p><a name='a4'></a>
+<strong>A4</strong>: Primary Key<br>
+<a href="#q4">Back</a></p>
+
+<p><a name='a5'></a>
+<strong>A5</strong>: Foreign key is an index stored in one table that refers to the row index (primary key) of another table.<br>
+<a href="#q5">Back</a></p>
+
+<p><a name='a6'></a>
+<strong>A6</strong>: Active Record pattern is an approach to accessing data in a database. Typical operations it helps perform on the database are inserting, updating and deleting data. <a href="http://www.martinfowler.com/eaaCatalog/activeRecord.html">Reference</a><br>
+<a href="#q6">Back</a></p>
+
+<p><a name='a7'></a>
+<strong>A7</strong>: crazy_monkeys<br>
+<a href="#q7">Back</a></p>
+
+<p><a name='a8'></a>
+<strong>A8</strong>:
+<figure class='code'><figcaption><span>Project Model</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="k">class</span> <span class="nc">Project</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:issues</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span>Issue Model</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="k">class</span> <span class="nc">Issue</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:project</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Foreign Key: <code>project_id</code></p>
+
+<p><a href="#q8">Back</a></p>
+
+<p><a name='a9'></a>
+<div><strong>A9</strong>:</div></p>
+
+<p><strong>The Animal Model and Schemas</strong>
+<figure class='code'><figcaption><span>Animal Model</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="k">class</span> <span class="nc">Animal</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:zoo</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<div>The Zoo table schema:</div>
+
+<ul>
+<li><code>id</code> (integer, primary_key, unique)</li>
+<li><code>name</code> (string)</li>
+</ul>
+
+<div>The Animal table schema:</div>
+
+<ul>
+<li><code>id</code> (integer, primary_key, unique)</li>
+<li><code>name</code>/<code>species</code> (string)</li>
+<li><code>zoo_id</code> (integer, foreign_key)</li>
+</ul>
+
+<p><a name='a9.2'></a></p>
+
+<div><strong>Methods available to a &#8216;zoo&#8217; object to call related to animals</strong>:</div>  
+
+<ul>
+<li><code>animals</code></li>
+<li><code>animals &lt;&lt; animal_object</code></li>
+<li><code>animals.delete(object, ...)</code></li>
+<li><code>animals.destroy(object, ...)</code></li>
+<li><code>animals=animal_objects</code></li>
+<li><code>animal_ids</code></li>
+<li><code>animal_ids=ids</code></li>
+<li><code>animals.clear</code></li>
+<li><code>animals.empty?</code></li>
+<li><code>animals.size</code></li>
+<li><code>animals.find(...)</code></li>
+<li><code>animals.where(...)</code></li>
+<li><code>animals.exists?(...)</code></li>
+<li><code>animals.build(attributes = {}, ...)</code></li>
+<li><code>animals.create(attributes = {})</code></li>
+<li><code>animals.create!(attributes = {})</code></li>
+</ul>
+
+<p><a name='a9.3'></a></p>
+
+<div><strong>To create an animal called &#8220;jumpster&#8221; in a zoo called &#8220;San Diego Zoo&#8221;</strong>:</div>  
+
+<figure class='code'><figcaption><span>Rails Console</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="n">zoo</span><span class="o">=</span><span class="no">Zoo</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;San Diego Zoo&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">zoo</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="no">Animal</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;jumpster&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p><a href="#q9">Back</a></p>
+
+<p><a name='a10'></a>
+<div><strong>A10</strong>:</div>
+<ul><li> Mass assignment - <code>Animal.create(name: &#39;tiger&#39;, zoo_id: &#39;3&#39;)</code></li>
+<li> Non-mass assignment -
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="no">Animal</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;tiger&#39;</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">zoo_id</span> <span class="o">=</span> <span class="mi">3</span>
+</span></code></pre></td></tr></table></div></figure></li></ul>
+<a href="#q10">Back</a></p>
+
+<p><a name='a11'></a>
+<strong>A11</strong>: It will fetch the first defined object (row) in the <code>animals</code> table in the database<br>
+<a href="#q11">Back</a></p>
+
+<p><a name='a12'></a>
+<div><strong>A12</strong>:</div>
+<ul><li> <code>Animal.create(name: &#39;Joe&#39;)</code></li>
+<li> <code>Animal.create!(name: &#39;Joe&#39;)</code></li></ul>
+<a href="#q12">Back</a></p>
+
+<p><a name='a13'></a>
+<strong>A13</strong>: It works through a join table which has attributes to store foreign keys (IDs) of the two tables it joins.<br>
+<a href="#q13">Back</a></p>
+
+<p><a name='a14'></a>
+<div><strong>A14</strong>:</div>
+<ul><li> <code>has_many, :through</code> (hmt)
+  <ul><li> Pro: Join medium is a model (can have additional attributes)</li></ul></li>
+<li> <code>has_and_belongs_to_many</code> (habtm)
+  <ul><li> Con: Only Join-Table, no Join-Model so cannot have custom attributes (as against the &#39;Pro&#39; for &#39;hmt&#39; type association)</li></ul></li></ul>
+<a href="#q14">Back</a></p>
+
+<p><a name='a15'></a>
+<div><strong>A15</strong>:</div>
+<figure class='code'><figcaption><span>Rails Console</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="n">user</span>  <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="n">group</span> <span class="o">=</span> <span class="no">Group</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="n">user</span><span class="o">.</span><span class="n">group</span> <span class="o">&lt;&lt;</span> <span class="n">group</span>
+</span></code></pre></td></tr></table></div></figure>
+<a href="#q15">Back</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Prasanna Joshi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-09-24T11:56:38+10:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:56 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/16/rails-references/" title="Previous Post: Rails References">&laquo; Rails References</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/09/25/getting-started-with-rails/" title="Next Post: Getting Started With Rails: RDBMS, Associations, Resources">Getting Started With Rails: RDBMS, Associations, Resources &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/25/getting-started-with-rails/">Getting Started With Rails: RDBMS, Associations, Resources</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/24/quiz-for-rails-beginners-1/">Quiz for Rails Beginners - 1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/16/rails-references/">Rails References</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/04/developing-web-based-blackjack/">Developing Web-based BlackJack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/03/my-first-look-at-basics-of-web-development/">My First Look at Basics of Web Development</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/03/my-failed-initial-experiments-with-tdd/">My (Failed) Initial Experiments With TDD</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/01/my-first-object-oriented-application-s-console-based-black-jack/">My First Object Oriented Application(s): Console Based Black Jack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/19/before_developing-my-first-object-oriented-application-notes-to-self/">Before Developing My First Object Oriented Application: Notes to Self</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/ppj">@ppj</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'ppj',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Prasanna Joshi -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-09-18T14:02:23+10:00</updated>
+  <updated>2014-09-26T12:11:16+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -12,6 +12,220 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Getting Started With Rails: RDBMS, Associations, Resources]]></title>
+    <link href="http://ppj.github.io/blog/2014/09/25/getting-started-with-rails/"/>
+    <updated>2014-09-25T14:27:22+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/09/25/getting-started-with-rails</id>
+    <content type="html"><![CDATA[<p><a name='top'></a></p>
+
+<div>Concepts covered in the first session of the <a href='http://www.gotealeaf.com/curriculum#!rails'>&#8216;Rapid Prototyping with Ruby on Rails&#8217;</a> course at <a href='http://www.gotealeaf.com/'>TeaLeaf Academy</a>:</div>
+
+<ul>
+<li><a href="#rdbms">Basics of Relational Databases</a></li>
+<li><a href="#ar">ActiveRecord</a></li>
+<li><a href="#mig">Migrations</a></li>
+<li><a href="#assoc">Associations (1:M and M:M)</a></li>
+<li><a href="#res">Resources</a></li>
+</ul>
+
+<!-- more -->
+
+<p><a name='rdbms'></a>  </p>
+
+<h3 class='no_extra_new_line'>Basics of Relational Databases</h3>
+
+<ul>
+<li>A single table in a relational db, in its simplest form, can be imagined to be like a spread-sheet (rows and columns)</li>
+<li>Each column has a title (attribute) and can store only one predefined type of data (integer, string, boolean, &#8230;) and this is where it differs from a generic spreadsheet</li>
+<li>Each row represents the data stored in the form of attribute values as per the columns</li>
+<li>Each row is identified by a unique integer attribute called the &#39;primary_key&#39; of the table</li>
+<li>There can be multiple (linked or unlinked) tables in the database, just like one file can have multiple spread-sheets</li>
+<li>One table refers to the rows of one other table using an integer attribute called the &#39;foreign_key&#39; (see image below for illustration - Courtesy: <a href="http://publib.boulder.ibm.com">http://publib.boulder.ibm.com</a>)<br>
+<img src="http://publib.boulder.ibm.com/infocenter/soliddb/v6r3/topic/com.ibm.swg.im.soliddb.sql.doc/figure/ReferentialConstraint.gif" alt="Courtesy: http://publib.boulder.ibm.com" title="Primary Key - Foreign Key"><br>
+<strong>The CUST_ID is foreign key in Accounts table and primary key for the Customers table</strong></li>
+<li>The foreign-key column is used to set up a 1-to-Many association between two tables (Foreign Key is on the &#39;Many&#39; table)</li>
+<li>Rails offers SQLite3 as the default database (<a href="http://sqlitestudio.pl/">SQLiteStudio</a> is a good free viewer available for SQLite3 among many other free and paid ones)</li>
+<li>A db table has two views
+
+<ul>
+<li><em>schema view</em>: shows the columns in each table and the type of data each column can store</li>
+<li><em>data view</em>: shows the actual data in the table (much like the spread-sheet view)</li>
+</ul></li>
+</ul>
+
+<p><a href="#top">Top</a></p>
+
+<p><a name='ar'></a></p>
+
+<h3 class='no_extra_new_line'>ActiveRecord</h3>
+
+<ul>
+<li>ActiveRecord is a pattern which helps abstract queries to the database through something called <strong>O</strong>bject <strong>R</strong>elational <strong>M</strong>apper (ORM)</li>
+<li>ORM helps generate SQL queries using a Object#method syntax, for example (in Rails)
+
+<ul>
+<li>code like <code>Post.all</code> would generate an SQL query that looks like</li>
+<li><code>SELECT &quot;posts&quot;.* FROM &quot;posts&quot;</code> which extracts all rows from the Post table in the database</li>
+</ul></li>
+<li>Each instance of an ActiveRecord Model object represents a row in the corresponding table</li>
+<li>Each object has getter and setter methods for the real attributes (columns) as well as virtual attributes (created based on associations)</li>
+<li>ActiveRecord in Rails is a thus a very simple, yet powerful (convenient) ORM implementation that saves lot of verbosity</li>
+<li>Although not obvious to new web developers (like me :-)), but the simplicity of Rails ActiveRecord brings in a harsh limitation on Rails
+
+<ul>
+<li>the more complex the database(s) gets (big banks, hospitals, large corporations, etc.), the harder it is to translate code to SQL commands when data for one object spans over multiple tables across multiple linked databases</li>
+<li>these large and complex databases need to be optimized for other aspects (for example, analytics) than just simple traversing</li>
+</ul></li>
+<li>See the image below (Courtesy: Tealeaf Academy) to get the basic idea of the implementation of ActiveRecord in Rails
+<img src="http://d3ncao0pifc37i.cloudfront.net/images/ar_db_connection.jpg" alt="ActiveRecord in Rails" title="ActiveRecord in Rails"></li>
+</ul>
+
+<p><a href="#top">Top</a></p>
+
+<p><a name='mig'></a></p>
+
+<h3 class='no_extra_new_line'>Migrations</h3>
+
+<ul>
+<li>Migrations are modifications done to the database schema (additions, deletions, modifications of or to the individual tables in the database)</li>
+<li>Migrations should be created using the <code>rails generate migrations new_migration_name</code> task (this is the only worthwhile use of the <code>rails generate</code> task)
+
+<ul>
+<li>the created migration file (Ruby) could be then modified manually to fine-tune the changes to be made to the schema </li>
+</ul></li>
+<li>Migrations should be effected using the <code>rake db:migrate</code> rake task
+
+<ul>
+<li>this will modify the schema.rb file to record the changes made to the schema (this file should be checked into the version control system)</li>
+<li>this task will also make the implement the changes in the db (which is not checked in to the repository)</li>
+</ul></li>
+<li>see the <a href="http://guides.rubyonrails.org/migrations.html">Migrations documentation</a> for details</li>
+</ul>
+
+<p><a href="#top">Top</a></p>
+
+<p><a name='assoc'></a></p>
+
+<h3 class='no_extra_new_line'>Associations</h3>
+
+<ul>
+<li>1-to-Many (1:M) associations between two Models (each table in the db represents an ActiveRecord Model) can be set up using the foreign-key attribute</li>
+<li>The model class for each entity needs to have the appropriate command that Rails provides to set up this association correctly (See the image below as an example - Courtesy: Tealeaf Academy)
+<img src="http://d3ncao0pifc37i.cloudfront.net/images/1-M_association.png" alt="1:M Association Setup" title="1:M Association Setup"></li>
+<li>Many-to-Many (M:M) associations are essentially two 1:M associations set up <strong>through</strong> an intermediary table, called the join-table</li>
+<li>the preferred way to set up a M:M association is using a <code>has_many, through:</code> (hmt) method (see the diagram below - Courtesy: Tealeaf Academy)
+<img src="http://d3ncao0pifc37i.cloudfront.net/images/M-M_association.png" alt="M:M Association Setup" title="M:M Association Setup"></li>
+<li>the &#39;hmt&#39; method lets us have the join-table as an ActiveRecord Model, which means it can have additional attributes (like created_at if we want to keep track of how long the association exists between the two objects of the end models)</li>
+<li>the non-preferred way to set up a M:M is with a <code>has_and_belongs_to_many</code> method</li>
+<li>the &#39;habtm&#39; way needs a join-table too but does not give us a join-model, which limits the way we can use the join-table</li>
+<li>see the <a href="http://guides.rubyonrails.org/association_basics.html">Associations Basics documentation</a> for details</li>
+</ul>
+
+<p><a href="#top">Top</a></p>
+
+<p><a name='res'></a></p>
+
+<h3 class='no_extra_new_line'>Resources</h3>
+
+<ul>
+<li>The routes.rb file defines all the routes the web application can take</li>
+<li>Individual routes can be added to this file using the syntax <code>HTTP_METHOD &#39;/route&#39;, to: &#39;controller#action&#39;</code>
+
+<ul>
+<li><code>get &#39;/posts&#39;, to: &#39;posts#index&#39;</code> will set a route for a GET request to the /posts path to be handled by the Posts controller&#39;s <code>index</code> action</li>
+</ul></li>
+<li><div>The most common routes required for a controller named, say Posts, can be added by a single line of code in the routes.rb file</div>
+
+<ul>
+<li>just having <code>resources :posts</code> in the block in the routes.rb file is going to give the following routes</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Prefix</th>
+<th>Verb</th>
+<th>URI Pattern</th>
+<th>Controller#Action</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>posts</td>
+<td>GET</td>
+<td>/posts(.:format)</td>
+<td>posts#index</td>
+</tr>
+<tr>
+<td></td>
+<td>POST</td>
+<td>/posts(.:format)</td>
+<td>posts#create</td>
+</tr>
+<tr>
+<td>new_post</td>
+<td>GET</td>
+<td>/posts/new(.:format)</td>
+<td>posts#new</td>
+</tr>
+<tr>
+<td>edit_post</td>
+<td>GET</td>
+<td>/posts/:id/edit(.:format)</td>
+<td>posts#edit</td>
+</tr>
+<tr>
+<td>post</td>
+<td>GET</td>
+<td>/posts/:id(.:format)</td>
+<td>posts#show</td>
+</tr>
+<tr>
+<td></td>
+<td>PATCH</td>
+<td>/posts/:id(.:format)</td>
+<td>posts#update</td>
+</tr>
+<tr>
+<td></td>
+<td>PUT</td>
+<td>/posts/:id(.:format)</td>
+<td>posts#update</td>
+</tr>
+<tr>
+<td></td>
+<td>DELETE</td>
+<td>/posts/:id(.:format)</td>
+<td>posts#destroy</td>
+</tr>
+</tbody></table></li>
+<li><div>This can be customized by using the <code>except:</code> or <code>only:</code> options</div>
+
+<ul>
+<li><code>resources :posts, except: :destroy</code> would set all routes except the DELETE (last one in the list above)</li>
+<li><code>resources :posts, only: [:index, :new, :create]</code> will set routes only for the first three actions in the list above</li>
+</ul></li>
+<li><p>See this <a href="http://guides.rubyonrails.org/routing.html">Rails Routing Guide page</a> for details</p></li>
+</ul>
+
+<!--
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+&#8211;>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails References]]></title>
