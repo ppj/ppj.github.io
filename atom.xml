@@ -4,7 +4,7 @@
   <title><![CDATA[Learning Ruby]]></title>
   <link href="http://ppj.github.io/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-10-06T15:53:36+11:00</updated>
+  <updated>2014-10-06T16:12:51+11:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -107,8 +107,8 @@
 <a href="#q2">Back</a></p>
 
 <p><a name='a3'></a>
-<strong>A3</strong>: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This is makes it very tightly integrated with the model object and it&#39;s attributes. A non-model backed helper is a more generic helper to create HTML tags and do not need any ActiveRecord Model object to work on.
-<a name='a3'></a></p>
+<strong>A3</strong>: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This is makes it very tightly integrated with the model object and it&#39;s attributes. A non-model backed helper is a more generic helper to create HTML tags and do not need any ActiveRecord Model object to work on.<br>
+<a href="#q3">Back</a></p>
 
 <p><a name='a4'></a>
 <strong>A4</strong>: Because the <code>form_for</code> is a model-backed form helper, it takes an ActiveRecord Model object to create an HTML form for using the model object&#39;s real and virtual attributes.<br>
@@ -152,16 +152,41 @@ The equivalent code for the create action of the Comments controller would look 
   <li>Model validations are triggered when the database is accessed for update, for e.g. the <code>save</code> or <code>create</code> methods are called on a model object</li>
   <li>f there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling <code>#errors</code> on it</li>
   Note: model_obj.errors.full_messages can be used to retrieve an array of error messages
-  <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors</li>
+  <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors as shown below</li>
 </ul>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&lt;</span><span class="sx">% if </span><span class="n">model_obj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">any?</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">  &lt;div class=&#39;row&#39;&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;alert alert-error span8&#39;</span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="no">Please</span> <span class="n">fix</span> <span class="n">the</span> <span class="n">errors</span> <span class="n">below</span> <span class="n">to</span> <span class="n">submit</span> <span class="ss">successfully</span><span class="p">:</span><span class="o">&lt;</span><span class="sr">/h5&gt;</span>
+</span><span class='line'><span class="sr">      &lt;ol&gt;</span>
+</span><span class='line'><span class="sr">        &lt;% model_obj.errors.full_messages.each do |msg| %&gt;</span>
+</span><span class='line'><span class="sr">          &lt;li&gt;&lt;%= msg %&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="sx">% end %&gt;</span>
+</span><span class='line'><span class="sx">      &lt;/ol&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="sr">/div&gt;</span>
+</span><span class='line'><span class="sr">  &lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 <a href="#q6">Back</a></p>
 
 <p><a name='a7'></a>
-<strong>A7</strong>: Rails helpers are methods that can be defined to contain repetitive logic for the presentation layer (used by the view templates).<br>
+<strong>A7</strong>: Rails helpers are methods that can be defined to contain repetitive logic for the presentation layer (used by the view templates). These helper methods usually go in the <code>app\helpers\application_helper.rb</code> file under the Rails project folder.<br>
 <a href="#q7">Back</a></p>
 
 <p><a name='a8'></a>
-<strong>A8</strong>: Rails partials are HTML snippets which need to be reused in many view templates with no or minimum modifications (that can be handled by arguments)<br>
+<strong>A8</strong>: Rails partials are HTML snippets which need to be reused in many view templates with no or minimum modifications (that can be handled by arguments). Filenames for partials begin with an <code>_</code>, for example: <code>_errors.html.erb</code>. This partial can be used by calling the render method on it, as in <code>&lt;%= render &#39;shared/errors&#39;, model_obj: @post %&gt;</code> where <code>model_obj</code> is an argument variable name that will be used in the partial (refer to the HTML code in <a href="#a6">Answer 6</a> above).<br>
 <a href="#q8">Back</a></p>
 
 <p><a name='a9'></a>
