@@ -54,8 +54,8 @@ __A2__: REST (<strong>RE</strong>presentational <strong>S</strong>tate <strong>T
 [Back](#q2)
 
 <a name='a3'></a>
-__A3__: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This is makes it very tightly integrated with the model object and it's attributes. A non-model backed helper is a more generic helper to create HTML tags and do not need any ActiveRecord Model object to work on.
-<a name='a3'></a>
+__A3__: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This is makes it very tightly integrated with the model object and it's attributes. A non-model backed helper is a more generic helper to create HTML tags and do not need any ActiveRecord Model object to work on.  
+[Back](#q3)
 
 <a name='a4'></a>
 __A4__: Because the `form_for` is a model-backed form helper, it takes an ActiveRecord Model object to create an HTML form for using the model object's real and virtual attributes.  
@@ -90,16 +90,30 @@ end
   <li>Model validations are triggered when the database is accessed for update, for e.g. the `save` or `create` methods are called on a model object</li>
   <li>f there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling `#errors` on it</li>
   Note: model_obj.errors.full_messages can be used to retrieve an array of error messages
-  <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors</li>
+  <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors as shown below</li>
 </ul>
+```Ruby
+<% if model_obj.errors.any? %>
+  <div class='row'>
+    <div class='alert alert-error span8'>
+      <h5>Please fix the errors below to submit successfully:</h5>
+      <ol>
+        <% model_obj.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+<% end %>
+```
 [Back](#q6)
 
 <a name='a7'></a>
-__A7__: Rails helpers are methods that can be defined to contain repetitive logic for the presentation layer (used by the view templates).  
+__A7__: Rails helpers are methods that can be defined to contain repetitive logic for the presentation layer (used by the view templates). These helper methods usually go in the `app\helpers\application_helper.rb` file under the Rails project folder.  
 [Back](#q7)
 
 <a name='a8'></a>
-__A8__: Rails partials are HTML snippets which need to be reused in many view templates with no or minimum modifications (that can be handled by arguments)  
+__A8__: Rails partials are HTML snippets which need to be reused in many view templates with no or minimum modifications (that can be handled by arguments). Filenames for partials begin with an `_`, for example: `_errors.html.erb`. This partial can be used by calling the render method on it, as in `<%= render 'shared/errors', model_obj: @post %>` where `model_obj` is an argument variable name that will be used in the partial (refer to the HTML code in [Answer 6](#a6) above).  
 [Back](#q8)
 
 <a name='a9'></a>
