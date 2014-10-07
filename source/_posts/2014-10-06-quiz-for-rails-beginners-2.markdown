@@ -69,7 +69,7 @@ __A4__: Because the `form_for` is a model-backed form helper, it takes an Active
   <li>If the save succeeds, redirect to the relevant page (showing the saved item by itself or in a list)</li>
   <li>If the save fails, render the page that submitted the form again, with the error messages (stored on the in-memory object) displayed</li>
 </ol>
-The equivalent code for the create action of the Comments controller would look like
+The equivalent code for the ```create``` action of the Category controller would look like this:
 ```Ruby
 def create
   @category = Category.new(params.require(:category).permit(:name))
@@ -82,12 +82,25 @@ def create
   end
 end
 ```
+Slightly different from the `create` action, the `update` action would like like this:
+```Ruby
+def update
+  @category = Category.find(params[:id])
+
+  if @category.update(params.require(:category).permit(:name))
+    flash[:notice] = 'Category updated.'
+    redirect_to category_path(@category)
+  else
+    render :edit
+  end
+end
+```
 [Back](#q5)
 
 <a name='a6'></a>
 <div>__A6__:</div>
 <ul class='no_extra_new_line'>
-  <li>Model validations are triggered when the database is accessed for update, for e.g. the `save` or `create` methods are called on a model object</li>
+  <li>Model validations are triggered when the database is accessed for update, for example: the `save` or `create` methods are called on a model object</li>
   <li>f there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling `#errors` on it</li>
   Note: model_obj.errors.full_messages can be used to retrieve an array of error messages
   <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors as shown below</li>
