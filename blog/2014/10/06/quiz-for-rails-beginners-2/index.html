@@ -188,7 +188,7 @@
   <li>If the save succeeds, redirect to the relevant page (showing the saved item by itself or in a list)</li>
   <li>If the save fails, render the page that submitted the form again, with the error messages (stored on the in-memory object) displayed</li>
 </ol>
-The equivalent code for the create action of the Comments controller would look like
+The equivalent code for the <code>create</code> action of the Category controller would look like this:
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -210,12 +210,34 @@ The equivalent code for the create action of the Comments controller would look 
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
+Slightly different from the <code>create</code> action, the <code>update</code> action would like like this:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>  <span class="vi">@category</span> <span class="o">=</span> <span class="no">Category</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="vi">@category</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:category</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">flash</span><span class="o">[</span><span class="ss">:notice</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;Category updated.&#39;</span>
+</span><span class='line'>    <span class="n">redirect_to</span> <span class="n">category_path</span><span class="p">(</span><span class="vi">@category</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">render</span> <span class="ss">:edit</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 <a href="#q5">Back</a></p>
 
 <p><a name='a6'></a>
 <div><strong>A6</strong>:</div>
 <ul class='no_extra_new_line'>
-  <li>Model validations are triggered when the database is accessed for update, for e.g. the <code>save</code> or <code>create</code> methods are called on a model object</li>
+  <li>Model validations are triggered when the database is accessed for update, for example: the <code>save</code> or <code>create</code> methods are called on a model object</li>
   <li>f there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling <code>#errors</code> on it</li>
   Note: model_obj.errors.full_messages can be used to retrieve an array of error messages
   <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors as shown below</li>
