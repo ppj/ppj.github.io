@@ -3,7 +3,7 @@ layout: post
 title: "Quiz for Rails Beginners 2"
 date: 2014-10-06 13:49:13 +1100
 comments: true
-categories: 
+categories:
   - quiz
   - Rails
   - resources

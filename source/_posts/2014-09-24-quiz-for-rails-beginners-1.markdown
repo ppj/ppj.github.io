@@ -3,11 +3,11 @@ layout: post
 title: "Quiz for Rails Beginners 1"
 date: 2014-09-24 11:56:38 +1000
 comments: true
-categories: 
+categories:
   - quiz
   - Rails
-  - beginner
   - associations
+  - beginner
   - relational database
 ---
 

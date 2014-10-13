@@ -3,7 +3,7 @@ layout: post
 title: "Before Developing My First Object Oriented Application: Notes To Self"
 date: 2014-08-19 13:23:18 +1000
 comments: true
-categories:
+categories: 
   - beginner
   - object oriented
 ---
