@@ -112,9 +112,6 @@ __The CUST_ID is foreign key in Accounts table and primary key for the Customers
 - See this [Rails Routing Guide page](http://guides.rubyonrails.org/routing.html) for details
 
 
-
-
-<!--
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -129,4 +126,4 @@ __The CUST_ID is foreign key in Accounts table and primary key for the Customers
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
--->
+
