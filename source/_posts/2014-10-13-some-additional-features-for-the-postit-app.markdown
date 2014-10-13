@@ -23,7 +23,7 @@ In the default application (as instructed in the course), the only way to create
 
 <center>![Add new category](/images/dropdown_new_category.jpg)</center>
 
-This is not very helpful when a user would want to add a new category during creation of a new post. So, i added a new category creation form inside the Posts-new view template. But that meant making sure the validation on the category name fired from here without destroying the new post contents. This also need use of non-model backed form helpers (although Category is a model, the text-field to pass new category name is not in a Category model-backed form).
+This is not very helpful when a user would want to add a new category during creation of a new post. So, i added a new category creation form inside the Posts-new view template. But that meant making sure the validation on the category name fired from here without destroying the new post contents. This also necessitated the use of non-model backed form helpers (although Category is a model, the text-field to pass new category name is not in a Category model-backed form).
 
 This helper in the Posts controller class helps to determine whether to create a new category or not:
 ```Ruby posts_controller.rb : create_new_category
@@ -89,8 +89,8 @@ Here's the post after the validation passes:
 One user cannot vote more than once on a post or a comment through this validation in the Votes model:
 `validates_uniqueness_of :creator, scope: [:voteable_type, :voteable_id]`
 
-But what if a user changes his/her mind on a particular post or comment after voting on it. Adding this capability meant that I needed to do primarily two things:
-- If the logged in user has voted (up or down) on a particular item, show an icon to delete the vote instead of casting it (the thumbs-up or thumbs-down icon)
+What if a user voted by mistake or changed his/her mind on a particular post or comment? Adding this capability meant that I needed to do primarily two things:
+- If the logged in user has voted (up or down) on a particular item, show an icon to delete the vote instead of an icon to cast a vote (the thumbs-up or thumbs-down icon)
 - The vote deletion icon should call an action to delete this user's vote on that item
 
 I added these by writing one helper method for each 'voteable' model, comment, and post. Shown below is the one for comment (the more complex of the two). The one for post is very similar.
