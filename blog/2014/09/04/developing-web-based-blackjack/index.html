@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Developing Web-based BlackJack - Learning Ruby</title>
+  <meta name="author" content="Prasanna Joshi">
+
+  
+  <meta name="description" content="So, i am finally done developing the web-version of the BlackJack game! Like i mentioned in the previous post, it was suggested in the TeaLeaf course &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ppj.github.io/blog/2014/09/04/developing-web-based-blackjack">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Learning Ruby" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Learning Ruby</a></h1>
+  
+    <h2>Reference, Mnemonic & Ramblings</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ppj.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Developing Web-based BlackJack</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-04T12:24:46+10:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:24 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So, i am finally done developing the web-version of the BlackJack game! Like i mentioned in the previous post, it was suggested in the TeaLeaf course to use procedural programming to keep it simple and focused on web application development learning!</p>
+
+<!-- more -->
+
+<p>Quoted below are the reasons for two major simplifications adopted in this first web-app development exercise -</p>
+
+<div><strong>Why procedural programming instead of OOP</strong>:</div>
+
+<blockquote>
+<p>We chose to not use OOP to manage our code. We&#39;ve seen that many people get stuck on OOP and can&#39;t move forward, and we want people to focus on web development and primary, HTTP in this lesson.  </p>
+</blockquote>
+
+<div><strong>Why simpler session-based persistence (cookies) instead of databases:</strong></div>
+
+<blockquote>
+<p>We chose to not include databases in this section, and instead chose to use the session, which is cookie-backed, for cheap persistence. Again, the reason is because many people get stuck on database concepts, which are important, but we want to direct focus on dealing with HTTP.  </p>
+</blockquote>
+
+<p>Relational database will be introduced and used in the subsequent TeaLeaf courses.</p>
+
+<h3 class='no_extra_new_line'>Sinatra Files/Folder Structure for <a href="https://github.com/ppj/blackjack_web"><em>My</em> App</a>:</h3>
+
+<ul>
+<li><a href="https://github.com/ppj/blackjack_web/blob/master/main.rb"><em>main.rb</em></a>: the main Ruby file with handlers for the HTTP requests</li>
+<li><a href="https://github.com/ppj/blackjack_web/blob/master/config.ru"><em>config.ru</em></a>: Sinatra settings and launcher file
+
+<ul>
+<li>use <code>rackup -p ABCD</code> to initiate a local WeBrick server @ port <em>ABCD</em> (defaults to 9292)<br></li>
+</ul></li>
+<li><a href="https://github.com/ppj/blackjack_web/tree/master/public"><strong>public</strong></a>
+
+<ul>
+<li>stores <a href="https://github.com/ppj/blackjack_web/blob/master/public/application.js">custom JavaScript</a> and <a href="https://github.com/ppj/blackjack_web/blob/master/public/application.css">CSS</a> <em>files</em> </li>
+<li><a href="https://github.com/ppj/blackjack_web/tree/master/public/images"><strong>images</strong></a>: stores the image files used in the app</li>
+<li><a href="https://github.com/ppj/blackjack_web/tree/master/public/vendor"><strong>vendor</strong></a>: can store third party &#39;plugins&#39;, like Twitter-Bootstrap files<br></li>
+</ul></li>
+<li><a href="https://github.com/ppj/blackjack_web/tree/master/views"><strong>views</strong></a>
+
+<ul>
+<li><a href="https://github.com/ppj/blackjack_web/blob/master/views/layout.erb"><em>layout.erb</em></a>: default (but customizable) erb layout to encompass the other erb templates in</li>
+<li>other erb templates (use <code>, :layout false</code> while rendering to avoid embedding these in the <em>layout.erb</em>)</li>
+</ul></li>
+</ul>
+
+<h3 class='no_extra_new_line'>Thumb Rules Followed:</h3>
+
+<ul>
+<li><code>/GET</code> requests generally render &#39;.erb&#39; (<strong>E</strong>mbedded <strong>R</strong>u<strong>b</strong>y HTML templates)</li>
+<li><code>/POST</code> requests generally <code>redirect</code> to another request (typically a <code>\GET</code> request handler)</li>
+</ul>
+
+<h3 class='no_extra_new_line'>Salient Features:</h3>
+
+<ul>
+<li>Empty string or blank spaces not allowed as player name</li>
+<li>Initial chip-count or bet cannot be empty/blank, non-numeric, or &gt; remaining chips</li>
+<li>Auto adjusts bet amount if set &gt; remaining chips and warns player accordingly</li>
+<li>Using the <code>session</code> hash the app remembers the following:
+
+<ul>
+<li>last player&#39;s name</li>
+<li>previous bet amount</li>
+</ul></li>
+<li>Tracks and displays chip-count on the round, and betting pages</li>
+<li>Player wins - message in green</li>
+<li>Player loses - message in red</li>
+<li>Game pushes (ties) - message in blue</li>
+<li>&quot;AJAXified&quot; the Hit, Stay and Dealer Next Card buttons - avoids reloading the entire page</li>
+</ul>
+
+<h3 class='no_extra_new_line'>Key Takeaways:</h3>
+
+<ul>
+<li>the difference between client side vs server side code</li>
+<li>what the DOM means and how to use jQuery to manipulate it</li>
+<li>unobtrusive JavaScript, and AJAX: when, and how, to use them</li>
+<li>dealing with re-binding issues when the DOM changes (the green highlighted lines are preferred over the red highlighted ones in the AJAX code below)
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>$(document).ready(function() {
+</span><span class='line'>
+</span><span class='line'><span class="gd">- $(&#39;#hit_form input&#39;).click(function() {</span>
+</span><span class='line'><span class="gi">+ $(document).on(&#39;click&#39;, &#39;#hit_form input&#39;, function() {</span>
+</span><span class='line'>
+</span><span class='line'>    $.ajax({
+</span><span class='line'>      type: &#39;POST&#39;,
+</span><span class='line'>      url: &#39;/round/player/hit&#39;
+</span><span class='line'>    }).done(function(msg) {
+</span><span class='line'>
+</span><span class='line'><span class="gd">-     $(&#39;#game_area&#39;).html(msg);</span>
+</span><span class='line'><span class="gi">+     $(&#39;#game_area&#39;).replaceWith(msg);</span>
+</span><span class='line'>
+</span><span class='line'>    });
+</span><span class='line'>    // prevent from further execution of the route
+</span><span class='line'>    return false; // or event.preventDefault();
+</span><span class='line'>  });
+</span><span class='line'>});
+</span></code></pre></td></tr></table></div></figure></li>
+</ul>
+
+<h3 class='no_extra_new_line'>Other Notes:</h3>
+
+<ul>
+<li>The equivalent of ShotGun gem for Windows is the Sinatra/Reloader gem. Both enable on the fly changes to the code; i.e. the local server instance need not be restarted to see the changes made to the code, a simple page refresh is enough once the changes are saved.
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">RUBY_PLATFORM</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;w32&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;sinatra/reloader&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></li>
+</ul>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Prasanna Joshi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-09-04T12:24:46+10:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:24 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ajax/'>ajax</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/03/my-first-look-at-basics-of-web-development/" title="Previous Post: My First Look At Basics of Web Development">&laquo; My First Look At Basics of Web Development</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/09/16/rails-references/" title="Next Post: Rails References">Rails References &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/some-additional-features-for-the-postit-app/">Some Additional Features for the PostIt App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/12/quiz-for-rails-beginners-3/">Quiz for Rails Beginners 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/06/quiz-for-rails-beginners-2/">Quiz for Rails Beginners 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/25/getting-started-with-rails/">Getting Started With Rails: RDBMS, Associations, Resources</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/24/quiz-for-rails-beginners-1/">Quiz for Rails Beginners 1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/16/rails-references/">Rails References</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/04/developing-web-based-blackjack/">Developing Web-based BlackJack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/03/my-first-look-at-basics-of-web-development/">My First Look at Basics of Web Development</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/ppj">@ppj</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'ppj',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Prasanna Joshi -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rest | Learning Ruby]]></title>
+  <link href="http://ppj.github.io/blog/categories/rest/atom.xml" rel="self"/>
+  <link href="http://ppj.github.io/"/>
+  <updated>2014-10-13T21:10:56+11:00</updated>
+  <id>http://ppj.github.io/</id>
+  <author>
+    <name><![CDATA[Prasanna Joshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Quiz for Rails Beginners 2]]></title>
+    <link href="http://ppj.github.io/blog/2014/10/06/quiz-for-rails-beginners-2/"/>
+    <updated>2014-10-06T13:49:13+11:00</updated>
+    <id>http://ppj.github.io/blog/2014/10/06/quiz-for-rails-beginners-2</id>
+    <content type="html"><![CDATA[<p>Here&#39;s the second quiz for people who are just getting started learning web-application development. This focuses more on the resources routes and related concepts in Rails.</p>
+
+<!-- more -->
+
+<p>Each question is a link pointing to my corresponding answer as i understand the concepts the today.</p>
+
+<ol>
+<li><p><a name='q1'></a><a href="#a1">Name all the 7 (or 8) routes exposed by the <code>resources</code> keyword in the <code>routes.rb</code> file. Also name the 4 named routes, and how the request is routed to the controller/action.</a></p></li>
+<li><p><a name='q2'></a><a href="#a2">What is REST and how does it relate to the <code>resources</code> routes?</a></p></li>
+<li><p><a name='q3'></a><a href="#a3">What&#39;s the major difference between model backed and non-model backed form helpers?</a></p></li>
+<li><p><a name='q4'></a><a href="#a4">How does <code>form_for</code> know how to build the <code>&lt;form&gt;</code> element?</a></p></li>
+<li><p><a name='q5'></a><a href="#a5">What&#39;s the general pattern we use in the actions that handle submission of model-backed forms (ie, the <code>create</code> and <code>update</code> actions)?</a></p></li>
+<li><p><a name='q6'></a><a href="#a6">How exactly do Rails validations get triggered? Where are the errors saved? How do we show the validation messages on the user interface?</a></p></li>
+<li><p><a name='q7'></a><a href="#a7">What are Rails helpers?</a></p></li>
+<li><p><a name='q8'></a><a href="#a8">What are Rails partials?</a></p></li>
+<li><p><a name='q9'></a><a href="#a9">When do we use partials vs helpers?</a></p></li>
+<li><p><a name='q10'></a><a href="#a10">When do we use non-model backed forms?</a></p></li>
+</ol>
+
+<h3 id="my-answers:">MY ANSWERS:</h3>
+
+<p><a name='a1'></a>
+<strong>A1</strong>: Having <code>resources :dogs</code> in the block in the routes.rb file is going to give us the following routes</p>
+
+<table><thead>
+<tr>
+<th>Prefix</th>
+<th>Verb</th>
+<th>URI Pattern</th>
+<th>Controller#Action</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dogs</td>
+<td>GET</td>
+<td>/dogs(.:format)</td>
+<td>dogs#index</td>
+</tr>
+<tr>
+<td></td>
+<td>POST</td>
+<td>/dogs(.:format)</td>
+<td>dogs#create</td>
+</tr>
+<tr>
+<td>new_dog</td>
+<td>GET</td>
+<td>/dogs/new(.:format)</td>
+<td>dogs#new</td>
+</tr>
+<tr>
+<td>edit_dog</td>
+<td>GET</td>
+<td>/dogs/:id/edit(.:format)</td>
+<td>dogs#edit</td>
+</tr>
+<tr>
+<td>dog</td>
+<td>GET</td>
+<td>/dogs/:id(.:format)</td>
+<td>dogs#show</td>
+</tr>
+<tr>
+<td></td>
+<td>PATCH</td>
+<td>/dogs/:id(.:format)</td>
+<td>dogs#update</td>
+</tr>
+<tr>
+<td></td>
+<td>PUT</td>
+<td>/dogs/:id(.:format)</td>
+<td>dogs#update</td>
+</tr>
+<tr>
+<td></td>
+<td>DELETE</td>
+<td>/dogs/:id(.:format)</td>
+<td>dogs#destroy</td>
+</tr>
+</tbody></table>
+
+<p><a href="#q1">Back</a></p>
+
+<p><a name='a2'></a>
+<strong>A2</strong>: REST (<strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer) is a way to maintain data persistence in <strong>stateless</strong> data-transfer protocol (which is HTTP in our case). The <code>resources</code> keyword in the routes.rb file creates the most used 7 routes (listed above) in a Rails application. These routes are RESTful because they conform to the <a href="http://en.wikipedia.org/wiki/Representational_state_transfer#Architectural_constraints">REST architectural constraints</a> for web application development. 
+<a href="#q2">Back</a></p>
+
+<p><a name='a3'></a>
+<strong>A3</strong>: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This is makes it very tightly integrated with the model object and it&#39;s attributes. A non-model backed helper is a more generic helper to create HTML tags and do not need any ActiveRecord Model object to work on.<br>
+<a href="#q3">Back</a></p>
+
+<p><a name='a4'></a>
+<strong>A4</strong>: Because the <code>form_for</code> is a model-backed form helper, it takes an ActiveRecord Model object to create an HTML form for using the model object&#39;s real and virtual attributes.<br>
+<a href="#q4">Back</a></p>
+
+<p><a name='a5'></a>
+<div><strong>A5</strong>: The general pattern we use in actions that handle model-backed form submission is:</div>
+<ol>
+  <li>Create/Update Model Object in Memory</li>
+  <li>Try to save it in the database</li>
+  <li>If the save succeeds, redirect to the relevant page (showing the saved item by itself or in a list)</li>
+  <li>If the save fails, render the page that submitted the form again, with the error messages (stored on the in-memory object) displayed</li>
+</ol>
+The equivalent code for the <code>create</code> action of the Category controller would look like this:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>  <span class="vi">@category</span> <span class="o">=</span> <span class="no">Category</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:category</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">))</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;if @category.save</span>
+</span><span class='line'><span class="sr">    flash[:notice] = &amp;#39;New category created.&amp;#39;</span>
+</span><span class='line'><span class="sr">    redirect_to categories_path</span>
+</span><span class='line'><span class="sr">  else</span>
+</span><span class='line'><span class="sr">    render :new</span>
+</span><span class='line'><span class="sr">  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;code&gt;</span>
+</span><span class='line'><span class="sr">Slightly different from the `create` action, the `update` action would like like this:</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="no">Ruby</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>  <span class="vi">@category</span> <span class="o">=</span> <span class="no">Category</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;if @category.update(params.require(:category).permit(:name))</span>
+</span><span class='line'><span class="sr">    flash[:notice] = &amp;#39;Category updated.&amp;#39;</span>
+</span><span class='line'><span class="sr">    redirect_to category_path(@category)</span>
+</span><span class='line'><span class="sr">  else</span>
+</span><span class='line'><span class="sr">    render :edit</span>
+</span><span class='line'><span class="sr">  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<a href="#q5">Back</a></p>
+
+<p><a name='a6'></a>
+<div><strong>A6</strong>:</div>
+<ul class='no_extra_new_line'>
+  <li>Model validations are triggered when the database is accessed for update, for example: the <code>save</code> or <code>create</code> methods are called on a model object</li>
+  <li>f there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling <code>#errors</code> on it</li>
+  Note: model_obj.errors.full_messages can be used to retrieve an array of error messages
+  <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors as shown below</li>
+</ul>
+<code>Ruby
+&lt;% if model_obj.errors.any? %&gt;
+  &lt;div class=&#39;row&#39;&gt;
+    &lt;div class=&#39;alert alert-error span8&#39;&gt;
+      &lt;h5&gt;Please fix the errors below to submit successfully:&lt;/h5&gt;
+      &lt;ol&gt;
+        &lt;% model_obj.errors.full_messages.each do |msg| %&gt;
+          &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;
+        &lt;% end %&gt;
+      &lt;/ol&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+</code>
+<a href="#q6">Back</a></p>
+
+<p><a name='a7'></a>
+<strong>A7</strong>: Rails helpers are methods that can be defined to contain repetitive logic for the presentation layer (used by the view templates). These helper methods usually go in the <code>app\helpers\application_helper.rb</code> file under the Rails project folder.<br>
+<a href="#q7">Back</a></p>
+
+<p><a name='a8'></a>
+<strong>A8</strong>: Rails partials are HTML snippets which need to be reused in many view templates with no or minimum modifications (that can be handled by arguments). Filenames for partials begin with an <code>_</code>, for example: <code>_errors.html.erb</code>. This partial can be used by calling the render method on it, as in <code>&lt;%= render &#39;shared/errors&#39;, model_obj: @post %&gt;</code> where <code>model_obj</code> is an argument variable name that will be used in the partial (refer to the HTML code in <a href="#a6">Answer 6</a> above).<br>
+<a href="#q8">Back</a></p>
+
+<p><a name='a9'></a>
+<strong>A9</strong>: Partials should be preferred over helpers when too much HTML needs to be embedded. Helpers should be reserved more for the logic (parsing / reformating / calculations) than the presentation itself.<br>
+<a href="#q9">Back</a></p>
+
+<p><a name='a10'></a>
+<strong>A10</strong>: Non-model backed form helpers should be used whenever user-input elements need to be generated for properties which are not the associated attributes of an ActiveRecord Model object.<br>
+<a href="#q10">Back</a></p>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+]]></content>
+  </entry>
+  
+</feed>

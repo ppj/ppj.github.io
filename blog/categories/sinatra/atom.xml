@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sinatra | Learning Ruby]]></title>
+  <link href="http://ppj.github.io/blog/categories/sinatra/atom.xml" rel="self"/>
+  <link href="http://ppj.github.io/"/>
+  <updated>2014-10-13T21:10:56+11:00</updated>
+  <id>http://ppj.github.io/</id>
+  <author>
+    <name><![CDATA[Prasanna Joshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My First Look at Basics of Web Development]]></title>
+    <link href="http://ppj.github.io/blog/2014/09/03/my-first-look-at-basics-of-web-development/"/>
+    <updated>2014-09-03T14:40:34+10:00</updated>
+    <id>http://ppj.github.io/blog/2014/09/03/my-first-look-at-basics-of-web-development</id>
+    <content type="html"><![CDATA[<p>This calls for a brief pause from learning/practicing OOP. The focus of this exercise is getting to know the underlying concepts of how the web works.</p>
+
+<!-- more -->
+
+<div>Below are links to decent tutorials/articles about the same:</div>
+
+<ul>
+<li><a href="http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177">HTTP</a></li>
+<li><a href="http://www.codecademy.com/tracks/htmlcss">HTML &amp; CSS</a></li>
+<li><a href="http://www.sinatrarb.com/intro.html">Sinatra</a></li>
+<li><a href="http://d1b1wr57ag5rdp.cloudfront.net/web_solutions/sinatra_mvc_request_response.pdf">Request/Response MVC</a></li>
+</ul>
+
+<div>At the end of this exercise, I should have a fair idea about&#8230;</div>
+
+<ul>
+<li>how the web server handles the requests from the client (typically, a web browser)</li>
+<li>how the web server issues responses back to the client</li>
+<li>how to simulate a &#39;stateful&#39; experience using a stateless protocol using browser cookies<br>
+The more traditional way is to use a database, but that is a bigger topic which is why it should be avoided for now.</li>
+</ul>
+
+<p>Once i familiarize myself with the above, i should put the knowledge to use by developing a web-version of &#8230;<br>
+&#8230;&#8230; drum-roll &#8230;..<br>
+yes &#8230;&#8230; the BlackJack game!</p>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+]]></content>
+  </entry>
+  
+</feed>

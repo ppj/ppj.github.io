@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Polymorphic | Learning Ruby]]></title>
+  <link href="http://ppj.github.io/blog/categories/polymorphic/atom.xml" rel="self"/>
+  <link href="http://ppj.github.io/"/>
+  <updated>2014-10-13T21:10:56+11:00</updated>
+  <id>http://ppj.github.io/</id>
+  <author>
+    <name><![CDATA[Prasanna Joshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Quiz for Rails Beginners 3]]></title>
+    <link href="http://ppj.github.io/blog/2014/10/12/quiz-for-rails-beginners-3/"/>
+    <updated>2014-10-12T16:22:01+11:00</updated>
+    <id>http://ppj.github.io/blog/2014/10/12/quiz-for-rails-beginners-3</id>
+    <content type="html"><![CDATA[<p>Here&#39;s the third quiz for people who are just getting started learning web-application development. 
+This revisits the basics of MVC, implementing basic user-authentication and polymorphic associations.</p>
+
+<!-- more -->
+
+<ol>
+<li><p><a name='q1'></a><a href="#a1">What&#39;s the difference between rendering and redirecting? What&#39;s the impact with regards to instance variables, view templates?</a></p></li>
+<li><p><a name='q2'></a><a href="#a2">If I need to display a message on the view template, and I&#39;m redirecting, what&#39;s the easiest way to accomplish this?</a></p></li>
+<li><p><a name='q3'></a><a href="#a3">If I need to display a message on the view template, and I&#39;m rendering, what&#39;s the easiest way to accomplish this?</a></p></li>
+<li><p><a name='q4'></a><a href="#a4">Explain how we should save passwords to the database.</a></p></li>
+<li><p><a name='q5'></a><a href="#a5">What should we do if we have a method that is used in both controllers and views?</a></p></li>
+<li><p><a name='q6'></a><a href="#a6">What is memoization? How is it a performance optimization?</a></p></li>
+<li><p><a name='q7'></a><a href="#a7">If we want to prevent unauthenticated users from creating a new comment on a post, what should we do?</a></p></li>
+<li><p><a name='q8'></a><a href="#a8">Suppose we have the following table for tracking &quot;likes&quot; in our application. How can we make this table polymorphic? Note that the &quot;user_id&quot; foreign key is tracking who created the like.</a>  </p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">id</th>
+<th style="text-align: center">user_id</th>
+<th style="text-align: center">photo_id</th>
+<th style="text-align: center">video_id</th>
+<th style="text-align: center">post_id</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">1</td>
+<td style="text-align: center">4</td>
+<td style="text-align: center"></td>
+<td style="text-align: center">12</td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: right">2</td>
+<td style="text-align: center">7</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">3</td>
+</tr>
+<tr>
+<td style="text-align: right">3</td>
+<td style="text-align: center">2</td>
+<td style="text-align: center">6</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+</tbody></table></li>
+<li><p><a name='q9'></a><a href="#a9">How do we set up polymorphic associations at the model layer? Give example for the polymorphic model (eg, Vote) as well as an example parent model (the model on the 1 side, eg, Post).</a></p></li>
+<li><p><a name='q10'></a><a href="#a10">What is an ERD diagram, and why do we need it?</a></p></li>
+</ol>
+
+<h3 id="my-answers:">MY ANSWERS:</h3>
+
+<p><a name='a1'></a>
+<strong>A1</strong>: Rendering a view template happens as (the final) part of a single HTTP request, whereas redirecting means end of a request and initiation a whole new request. And because of that, redirecting would not enable use of instance variables in the view templates unlike direct rendering.<br>
+<a href="#q1">Back</a></p>
+
+<p><a name='a2'></a>
+<strong>A2</strong>: Using a hash referenced in the layout would be the easiest way to display messages if redirecting. For example:<br>
+<code>flash[:notice] = &#39;You have successfully updated the profile&#39;</code>
+<code>flash[:error] = &#39;The login credentials you entered are incorrect&#39;</code><br>
+<a href="#q2">Back</a></p>
+
+<p><a name='a3'></a>
+<strong>A3</strong>: For generic messages, using the same hash as described in <a href="#a2">A2</a> above would work. If error messages on a model-object stored in an instance variable need to be displayed, that instance variable can be used directly in the view template using something like<br>
+<code>ruby
+&lt;% if model_obj.errors.any? %&gt;
+  &lt;div class=&#39;row&#39;&gt;
+    &lt;div class=&#39;alert alert-error span8&#39;&gt;
+      &lt;h5&gt;Please fix the errors below to submit successfully:&lt;/h5&gt;
+      &lt;ol&gt;
+        &lt;% model_obj.errors.full_messages.each do |msg| %&gt;
+          &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;
+        &lt;% end %&gt;
+      &lt;/ol&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+</code>
+<a href="#q3">Back</a></p>
+
+<p><a name='a4'></a>
+<strong>A4</strong>: Passwords should definitely never be stored directly as strings in the database. They should be auto converted to complex strings (obfuscated) using a dedicated gem (like <strong>bcrypt-ruby</strong>). Such a gem can help obfuscate the user-entered password using the same mechanism to obfuscate the originally set password. Thus the comparison between the user entered and originally set password can happen indirectly through the obfuscated strings. This obfuscation is one-way, that means the stored string cannot be converted back to the actual password string.
+In case of the bcrypt-ruby gem, the database table for the model needs to have a column named &#39;password_digest&#39; that can hold a string. The model itself needs to have the <code>has_secure_password</code> validation declared in its class-definition. bcrypt-ruby gives a method named <code>authenticate</code> for the model-object which can be used to match the user-entered password to the stored one.<br>
+<a href="#q4">Back</a></p>
+
+<p><a name='a5'></a>
+<strong>A5</strong>: If a helper method defined in the ApplicationController class (which each of the controllers inherit from) needs to be used by both the views, and the controllers, the <code>helper_method</code> needs to be called in the ApplicationController class definition with the helper-method names passed to it as arguments (as <code>:symbol</code>s). So, a line like the one below in the ApplicationController class definition<br>
+<code>helper_method :current_user, :logged_in?</code><br>
+will allow the methods <code>current_user</code> and <code>logged_in?</code> to be used in both views and controllers. Note that a call to <code>helper_method</code> is not necessary if these only need to be used in the controllers.<br>
+<a href="#q5">Back</a></p>
+
+<p><a name='a6'></a>
+<strong>A6</strong>: &#39;Memoization&#39; (a play on the word &#39;memoir&#39;) is an optimization technique used to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same operation is requested repeatedly.<br>
+It can be implemented in Ruby using the operator <code>||=</code> to assign a value to an instance variable. This can be used effectively to store results from a repeated database query (which can be quite performance intensive). The statement below is &#39;memoization&#39; in action:<br>
+<code>@current_user ||= User.find(session[:user_id]) if session[:user_id]</code><br>
+If the <code>current_user</code> instance variable is already populated (say, from a previous call to this statement), the cached result will be returned and evaluation of the right side of the above expression will be avoided.<br>
+<a href="#q6">Back</a></p>
+
+<p><a name='a7'></a>
+<strong>A7</strong>: The rendering and submission of new comment form (Comments#new and Comments#create actions) should be allowed only if a user is logged in. This can be achieved by a common helper method that checks whether a valid user is logged in. This method will be defined in the parent controller class ApplicationController. This method can be called in the Comments controller class using the <code>before_action</code> keyword which will trigger checking of a valid user before executing certain actions.
+<code>before_action :logged_in?, only: [:new, :create]</code><br>
+<a href="#q7">Back</a></p>
+
+<p><a name='a8'></a>
+<div class='no_extra_new_line'><strong>A8</strong>: The table below shows the polymorphic version of the one shown in the question:</div>
+<table style='margin-left:2em'>
+  <thead>
+    <tr>
+      <th style="text-align: right">id</th>
+      <th style="text-align: center">user_id</th>
+      <th style="text-align: center">likeable_type</th>
+      <th style="text-align: center">likeable_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">Video</td>
+      <td style="text-align: center">12</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">Post</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Photo</td>
+      <td style="text-align: center">6</td>
+    </tr>
+  </tbody>
+</table><br>
+<a href="#q8">Back</a></p>
+
+<p><a name='a9'></a>
+<div class='no_extra_new_line'><strong>A9</strong>: The &#39;like&#39; model would look like this</div>
+<code>Ruby like.rb
+class Like &lt; ActiveRecord::Base
+  belongs_to :user
+  belongs_to :likeable, polymorphic: true
+end
+</code>
+The User model (creator of the &#39;like&#39;s) will look like this<br>
+<code>Ruby User.rb
+class User &lt; ActiveRecord::Base
+  has_many :photos
+  has_many :videos
+  has_many :posts
+  has_many :likes
+end
+</code>
+Finally, the &#39;likeable&#39;s: Photo, Video and Post models, are shown below<br>
+<code>Ruby photo.rb
+class Photo &lt; ActiveRecord::Base
+  belongs_to :poster, foreign_key: &#39;user_id&#39;, class_name: &#39;User&#39;
+  has_many :likes, as: :likeable
+end
+</code>
+<code>Ruby video.rb
+class Video &lt; ActiveRecord::Base
+  belongs_to :poster, foreign_key: &#39;user_id&#39;, class_name: &#39;User&#39;
+  has_many :likes, as: :likeable
+end
+</code>
+<code>Ruby post.rb
+class Post &lt; ActiveRecord::Base
+  belongs_to :poster, foreign_key: &#39;user_id&#39;, class_name: &#39;User&#39;
+  has_many :likes, as: :likeable
+end
+</code>
+<a href="#q9">Back</a></p>
+
+<p><a name='a10'></a>
+<strong>A10</strong>: Entity Relationship Diagrams show individual ActiveRecord models and their association with each other. Individual models are represented as blocks and also show the columns that model&#39;s database table needs to have. These are really handy when we are setting up the database models and associations between them.<br>
+See the ERD below for the PostIt application (Courtesy - Tealeaf Academy):
+<img src="http://d3ncao0pifc37i.cloudfront.net/images/ERD_final.jpg" alt="Final ERD"><br>
+<a href="#q10">Back</a></p>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+]]></content>
+  </entry>
+  
+</feed>
