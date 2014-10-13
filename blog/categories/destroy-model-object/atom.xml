@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Rails | Learning Ruby]]></title>
-  <link href="http://ppj.github.io/blog/categories/rails/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Destroy Model Object | Learning Ruby]]></title>
+  <link href="http://ppj.github.io/blog/categories/destroy-model-object/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
   <updated>2014-10-13T21:06:10+11:00</updated>
   <id>http://ppj.github.io/</id>
