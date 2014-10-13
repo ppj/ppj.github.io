@@ -4,6 +4,11 @@ title: "Quiz for Rails Beginners 1"
 date: 2014-09-24 11:56:38 +1000
 comments: true
 categories: 
+  - quiz
+  - Rails
+  - beginner
+  - associations
+  - relational database
 ---
 
 Here's a quiz for people who are just getting started learning web-application development. Most questions are specific to Rails, others are generic. Each question is a link pointing to my corresponding answer as i understand the concepts the today.

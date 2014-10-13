@@ -4,9 +4,9 @@ title: "Rails References"
 date: 2014-09-16 10:15:46 +1000
 comments: true
 categories:
-  - rails 
+  - Rails 
   - tutorial
-  - TeaLeaf
+  - Tealeaf
 ---
 I just started the [second](http://www.gotealeaf.com/curriculum#!rails) of the 3 [TeaLeaf](http://www.gotealeaf.com/) courses for back-end web-application development using Ruby on Rails.
 

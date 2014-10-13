@@ -4,6 +4,14 @@ title: "Quiz for Rails Beginners 3"
 date: 2014-10-12 16:22:01 +1100
 comments: true
 categories:
+  - quiz
+  - Rails
+  - beginner
+  - MVC
+  - polymorphic
+  - associations
+  - user authentication
+  - security
 ---
 Here's the third quiz for people who are just getting started learning web-application development. 
 This revisits the basics of MVC, implementing basic user-authentication and polymorphic associations.

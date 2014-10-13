@@ -4,6 +4,8 @@ title: "My first Object Oriented Application(s): Console Based Black Jack"
 date: 2014-09-01 13:36:33 +1000
 comments: true
 categories:
+  - beginner
+  - object oriented
 ---
 Before i developed the console-based Black Jack, i tried developing a slightly simpler game, also console based: Tic-Tac-Toe. Here are the problem statements for both the apps:
 

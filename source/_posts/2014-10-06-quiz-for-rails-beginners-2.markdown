@@ -4,6 +4,13 @@ title: "Quiz for Rails Beginners 2"
 date: 2014-10-06 13:49:13 +1100
 comments: true
 categories: 
+  - quiz
+  - Rails
+  - resources
+  - REST
+  - routes
+  - helpers
+  - partials
 ---
 Here's the second quiz for people who are just getting started learning web-application development. This focuses more on the resources routes and related concepts in Rails.
 

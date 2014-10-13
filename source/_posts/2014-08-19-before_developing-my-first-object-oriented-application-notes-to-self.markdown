@@ -4,6 +4,8 @@ title: "Before Developing My First Object Oriented Application: Notes To Self"
 date: 2014-08-19 13:23:18 +1000
 comments: true
 categories:
+  - beginner
+  - object oriented
 ---
 
 These are generic notes made when i learnt the basics of Object Oriented programming using Ruby.
