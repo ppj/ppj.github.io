@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Destroy Model Object | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/destroy-model-object/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-10-14T23:34:40+11:00</updated>
+  <updated>2014-10-14T23:49:16+11:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -135,6 +135,39 @@
 
 <p>Here&#39;s the post after the validation passes:
 <center><img src="/images/new_category_success.JPG" alt="New Category Success"></center></p>
+
+<p>The changes in the form partial are highlighted in the git-diff below:
+<code>diff views/posts/\_form.html.erb
+ &lt;div class=&#39;well&#39;&gt;
+   &lt;%= render &#39;shared/errors&#39;, model_obj: @post %&gt;
+   &lt;%= form_for @post do |f| %&gt;
+     &lt;div class=&#39;control-group&#39;&gt;
+       &lt;%= f.label :title %&gt;
+       &lt;%= f.text_field :title %&gt;
+     &lt;/div&gt;
+     &lt;div class=&#39;control-group&#39;&gt;
+       &lt;%= f.label :url %&gt;
+       &lt;%= f.text_field :url %&gt;
+     &lt;/div&gt;
+     &lt;div class=&#39;control-group&#39;&gt;
+       &lt;%= f.label :description %&gt;
+       &lt;%= f.text_area :description, rows: 4 %&gt;
+     &lt;/div&gt;
+     &lt;br/&gt;
+     &lt;div class=&#39;control-group&#39;&gt;
+       &lt;%= f.label :category_ids, &quot;Categories&quot; %&gt;
+       &lt;%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %&gt;
+         &lt;% b.label(class: &quot;checkbox inline&quot;) { b.check_box(class: &quot;checkbox inline&quot;) + b.text } %&gt;
+       &lt;% end %&gt;
++      &lt;%= render(&#39;shared/errors&#39;, model_obj: @category) if @category %&gt;
++      &lt;% new_category = @new_category ? @new_category : &quot;&quot; %&gt;
++      &lt;%= label_tag :new_category, &quot;Create a new category: &quot; %&gt;
++      &lt;%= text_field_tag :new_category, new_category %&gt;
+     &lt;/div&gt;
+     &lt;%= f.submit class: &#39;btn btn-primary&#39;%&gt;
+   &lt;% end %&gt;
+ &lt;/div&gt;
+</code></p>
 
 <p><a name='vote_deletion'></a></p>
 

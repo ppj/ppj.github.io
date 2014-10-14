@@ -202,6 +202,67 @@
 <p>Here&#39;s the post after the validation passes:
 <center><img src="/images/new_category_success.JPG" alt="New Category Success"></center></p>
 
+<p>The changes in the form partial are highlighted in the git-diff below:
+<figure class='code'><figcaption><span>views/posts/_form.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'> &lt;div class=&#39;well&#39;&gt;
+</span><span class='line'>   &lt;%= render &#39;shared/errors&#39;, model_obj: @post %&gt;
+</span><span class='line'>   &lt;%= form_for @post do |f| %&gt;
+</span><span class='line'>     &lt;div class=&#39;control-group&#39;&gt;
+</span><span class='line'>       &lt;%= f.label :title %&gt;
+</span><span class='line'>       &lt;%= f.text_field :title %&gt;
+</span><span class='line'>     &lt;/div&gt;
+</span><span class='line'>     &lt;div class=&#39;control-group&#39;&gt;
+</span><span class='line'>       &lt;%= f.label :url %&gt;
+</span><span class='line'>       &lt;%= f.text_field :url %&gt;
+</span><span class='line'>     &lt;/div&gt;
+</span><span class='line'>     &lt;div class=&#39;control-group&#39;&gt;
+</span><span class='line'>       &lt;%= f.label :description %&gt;
+</span><span class='line'>       &lt;%= f.text_area :description, rows: 4 %&gt;
+</span><span class='line'>     &lt;/div&gt;
+</span><span class='line'>     &lt;br/&gt;
+</span><span class='line'>     &lt;div class=&#39;control-group&#39;&gt;
+</span><span class='line'>       &lt;%= f.label :category_ids, &quot;Categories&quot; %&gt;
+</span><span class='line'>       &lt;%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %&gt;
+</span><span class='line'>         &lt;% b.label(class: &quot;checkbox inline&quot;) { b.check_box(class: &quot;checkbox inline&quot;) + b.text } %&gt;
+</span><span class='line'>       &lt;% end %&gt;
+</span><span class='line'><span class="gi">+      &lt;%= render(&#39;shared/errors&#39;, model_obj: @category) if @category %&gt;</span>
+</span><span class='line'><span class="gi">+      &lt;% new_category = @new_category ? @new_category : &quot;&quot; %&gt;</span>
+</span><span class='line'><span class="gi">+      &lt;%= label_tag :new_category, &quot;Create a new category: &quot; %&gt;</span>
+</span><span class='line'><span class="gi">+      &lt;%= text_field_tag :new_category, new_category %&gt;</span>
+</span><span class='line'>     &lt;/div&gt;
+</span><span class='line'>     &lt;%= f.submit class: &#39;btn btn-primary&#39;%&gt;
+</span><span class='line'>   &lt;% end %&gt;
+</span><span class='line'> &lt;/div&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
 <p><a name='vote_deletion'></a></p>
 
 <h3 id="deletion-of-a-vote">Deletion Of A Vote</h3>
