@@ -84,6 +84,39 @@ If, new category creation fails:
 Here's the post after the validation passes:
 <center>![New Category Success](/images/new_category_success.JPG)</center>
 
+The changes in the form partial are highlighted in the git-diff below:
+```diff views/posts/\_form.html.erb
+ <div class='well'>
+   <%= render 'shared/errors', model_obj: @post %>
+   <%= form_for @post do |f| %>
+     <div class='control-group'>
+       <%= f.label :title %>
+       <%= f.text_field :title %>
+     </div>
+     <div class='control-group'>
+       <%= f.label :url %>
+       <%= f.text_field :url %>
+     </div>
+     <div class='control-group'>
+       <%= f.label :description %>
+       <%= f.text_area :description, rows: 4 %>
+     </div>
+     <br/>
+     <div class='control-group'>
+       <%= f.label :category_ids, "Categories" %>
+       <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+         <% b.label(class: "checkbox inline") { b.check_box(class: "checkbox inline") + b.text } %>
+       <% end %>
++      <%= render('shared/errors', model_obj: @category) if @category %>
++      <% new_category = @new_category ? @new_category : "" %>
++      <%= label_tag :new_category, "Create a new category: " %>
++      <%= text_field_tag :new_category, new_category %>
+     </div>
+     <%= f.submit class: 'btn btn-primary'%>
+   <% end %>
+ </div>
+```
+
 <a name='vote_deletion'></a>
 ### Deletion Of A Vote
 One user cannot vote more than once on a post or a comment through this validation in the Votes model:
