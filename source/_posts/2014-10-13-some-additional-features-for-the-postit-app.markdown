@@ -131,7 +131,7 @@ The images below show the conditional rendering:
 
 When user has not voted on the item | When the user has voted 'up' an item
 :----------------------------------:|:------------------------------------:
-![Vote Box No Delete](/images/Votes_no_delete.jpg) | ![Vote Box No Delete](/images/Votes_with_delete.jpg)
+![Vote Box No Delete](/images/Votes_no_delete.JPG) | ![Vote Box No Delete](/images/Votes_with_delete.JPG)
 
 
 <div id="disqus_thread"></div>
