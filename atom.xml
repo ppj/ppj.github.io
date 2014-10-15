@@ -4,7 +4,7 @@
   <title><![CDATA[Learning Ruby]]></title>
   <link href="http://ppj.github.io/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-10-14T23:49:16+11:00</updated>
+  <updated>2014-10-15T12:10:10+11:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -201,12 +201,15 @@
 
 <h3 id="deletion-of-a-vote">Deletion Of A Vote</h3>
 
-<p>One user cannot vote more than once on a post or a comment through this validation in the Votes model:
+<p>One user cannot vote more than once on a post or a comment through this validation in the Votes model:<br>
 <code>validates_uniqueness_of :creator, scope: [:voteable_type, :voteable_id]</code></p>
 
-<p>What if a user voted by mistake or changed his/her mind on a particular post or comment? Adding this capability meant that I needed to do primarily two things:
-- If the logged in user has voted (up or down) on a particular item, show an icon to delete the vote instead of an icon to cast a vote (the thumbs-up or thumbs-down icon)
-- The vote deletion icon should call an action to delete this user&#39;s vote on that item</p>
+<div>What if a user voted by mistake or changed his/her mind on a particular post or comment? Adding this capability meant that I needed to do primarily two things:</div>  
+
+<ul>
+<li>If the logged in user has voted (up or down) on a particular item, show an icon to delete the vote instead of an icon to cast a vote (the thumbs-up or thumbs-down icon)<br></li>
+<li>The vote deletion icon should call an action to delete this user&#39;s vote on that item</li>
+</ul>
 
 <p>I added these by writing one helper method for each &#39;voteable&#39; model, comment, and post. Shown below is the one for comment (the more complex of the two). The one for post is very similar.
 <figure class='code'><figcaption><span>/app/helpers/application_helper.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
