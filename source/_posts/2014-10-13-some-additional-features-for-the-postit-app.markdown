@@ -119,11 +119,11 @@ The changes in the form partial are highlighted in the git-diff below:
 
 <a name='vote_deletion'></a>
 ### Deletion Of A Vote
-One user cannot vote more than once on a post or a comment through this validation in the Votes model:
+One user cannot vote more than once on a post or a comment through this validation in the Votes model:  
 `validates_uniqueness_of :creator, scope: [:voteable_type, :voteable_id]`
 
-What if a user voted by mistake or changed his/her mind on a particular post or comment? Adding this capability meant that I needed to do primarily two things:
-- If the logged in user has voted (up or down) on a particular item, show an icon to delete the vote instead of an icon to cast a vote (the thumbs-up or thumbs-down icon)
+<div>What if a user voted by mistake or changed his/her mind on a particular post or comment? Adding this capability meant that I needed to do primarily two things:</div>  
+- If the logged in user has voted (up or down) on a particular item, show an icon to delete the vote instead of an icon to cast a vote (the thumbs-up or thumbs-down icon)  
 - The vote deletion icon should call an action to delete this user's vote on that item
 
 I added these by writing one helper method for each 'voteable' model, comment, and post. Shown below is the one for comment (the more complex of the two). The one for post is very similar.
