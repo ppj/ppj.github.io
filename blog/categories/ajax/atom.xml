@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ajax | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/ajax/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-10-15T12:10:10+11:00</updated>
+  <updated>2014-10-22T16:44:55+11:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -12,6 +12,277 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Enhancements to the PostIt App]]></title>
+    <link href="http://ppj.github.io/blog/2014/10/21/enhancements-to-the-postit-app/"/>
+    <updated>2014-10-21T16:16:17+11:00</updated>
+    <id>http://ppj.github.io/blog/2014/10/21/enhancements-to-the-postit-app</id>
+    <content type="html"><![CDATA[<p>The final lesson (Lesson 4) of Course 2 involved adding some more functionality to the <a href="ppj-postit.heroku.com">PostIt</a> app (the Reddit clone).</p>
+
+<!-- more -->
+
+<ol>
+<li><a name='ajaxt'></a><a href="#ajax">&#39;AJAX&#39;ifying voting</a></li>
+<li><a name='slugt'></a><a href="#slug">&#39;Slug&#39;ifying routes</a></li>
+<li><a name='rolet'></a><a href="#role">Simple Role Implementation</a></li>
+<li><a name='timet'></a><a href="#time">Time-zone Setting</a></li>
+</ol>
+
+<p><a name='ajax'></a></p>
+
+<h3 id="1.-&#39;ajax&#39;ifying-the-voting">1. &#39;AJAX&#39;ifying the voting</h3>
+
+<p>In Rails, this is slightly different from the way this is implemented in a non-Rails based web application. Called Server-generated JavaScript Response (SJR), Rails can dynamically create a JavaScript that implements an AJAX action.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">link_to</span> <span class="n">vote_post_path</span><span class="p">(</span><span class="n">post_object</span><span class="p">,</span> <span class="ss">vote</span><span class="p">:</span> <span class="n">value</span><span class="p">),</span> <span class="nb">method</span><span class="p">:</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="ss">remote</span><span class="p">:</span> <span class="kp">true</span> <span class="k">do</span>
+  <span class="n">icon</span><span class="o">.</span><span class="n">html_safe</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>The <code>remote: true</code> switch dictates AJAX implementation of that particular link. </p>
+
+<p>Another thing to note is that the <code>method: &#39;post&#39;</code> switch dynamically (using a JavaScript) injects a form with &#39;POST&#39; submission to the same link as indicated by the <code>vote_post_path(post_object)</code> call.</p>
+
+<p>The action that handles the new request needs to be modified to deal with a JavaScript response now:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">format</span><span class="o">.</span><span class="n">html</span> <span class="k">do</span>
+</span><span class='line'>      <span class="k">if</span> <span class="vi">@vote</span><span class="o">.</span><span class="n">valid?</span>
+</span><span class='line'>        <span class="n">flash</span><span class="o">[</span><span class="ss">:notice</span><span class="o">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#39;Your vote was cast.&amp;#39;</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="n">flash</span><span class="o">[</span><span class="ss">:error</span><span class="o">]</span>  <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#39;You can vote only once on this post.&amp;#39;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="ss">:back</span>
+</span><span class='line'>    <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;format.js # by default renders the [action_name].js.erb template in the views/</span><span class="o">[</span><span class="n">controller_name</span><span class="o">]</span> <span class="n">folder</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The code in the [action_name].js.erb could be something as simple as:
+<code>$(&#39;#post_&lt;%= @post.id %&gt;_votebox&#39;).html(&quot;&lt;%= @post.total_votes %&gt;&quot;);</code>
+or a bit more complicated as in <a href="https://github.com/ppj/postit/blob/master/app/views/posts/vote.js.erb">this file</a></p>
+
+<div>Refer to these commits to the PostIt app for details of code changes:</div>
+
+<ul>
+<li><a href="https://github.com/ppj/postit/commit/d2a716df3e0730fda75255fbd9c65e721704be7d">AJAXified voting for posts</a></li>
+<li><a href="https://github.com/ppj/postit/commit/2ae2aa22ed08058227d07463d348cf51e27354c1">AJAXified voting for comments</a></li>
+</ul>
+
+<p><a href="#ajaxt">Back</a></p>
+
+<p><a name='slug'></a></p>
+
+<h3 id="2.-&#39;slug&#39;ifying-the-routes">2. &#39;Slug&#39;ifying the routes</h3>
+
+<p>There is a security concern with URLs that look like &#39;ppj-postit.heroku.com/users/3&#39; with the &#39;3&#39; representing the ID of the User object. Same is the case with Posts and Categories. A more appropriate URL for the above would be &#39;ppj-postit.heroku.com/users/testman&#39; where &#39;testman&#39; is automatically generated from the <code>username</code> attribute of a user. This is what is called a &#39;slug&#39; in web development jargon. To achieve this, the <code>to_param()</code> method of the model object has to be over-ridden, because this is the method used by the named-route methods like <code>user_path</code>, et al.</p>
+
+<p>First a &#39;slug&#39; column needs to be added to the models (tables) to store the respective slugs. The models also need to have a way to automatically generate and save the slug. The former can be done by simple column creating migration. The generation of the slug can also be done in the same migration (for existing records). The slug-generator will take the appropriate attribute of the model, the <code>:username</code> attribute in case of the Users table. </p>
+
+<p>Writing a <code>generate_slug</code> method for the model will be useful for auto-generation of slugs. This method can then be called to create a slug every time a new User object is created using the <code>before_save</code> <a href="http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html">ActiveRecord callback</a>.</p>
+
+<div>These modifications to the User model show a simple implementation of the above technique:</div>
+
+<p><figure class='code'><figcaption><span>./app/models/user.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="k">class</span> <span class="nc">User</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">before_save</span> <span class="ss">:generate_slug</span>
+</span><span class='line'>  <span class="o">.</span>
+</span><span class='line'>  <span class="c1"># rest of the code omitted for brevity</span>
+</span><span class='line'>  <span class="o">.</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">generate_slug</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">slug</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">username</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;def to_param</span>
+</span><span class='line'><span class="sr">    self.slug # overrides the default self.id</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<div>The URL will now have the value of the <code>:username</code> attribute and so the view templates now need to search the User object by slug instead of ID:</div>
+<code>diff
+   def set_user
+-    @user = User.find(params[:id])
++    @user = User.find_by(slug: params[:id])
+   end
+</code></p>
+
+<p>Note: The implementation of <code>generate_slug</code> shown above is very simplistic. A robust implementation should ensure that the slugs are never repeated for the same model. This is especially applicable for the models where slugs will be generated from a non-unique attribute (e.g. Posts.title). The code below shows exactly that:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="k">def</span> <span class="nf">generate_slug!</span>
+    <span class="n">the_slug</span> <span class="o">=</span> <span class="n">to_slug</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="n">find_by</span> <span class="ss">slug</span><span class="p">:</span> <span class="n">the_slug</span>
+    <span class="k">while</span> <span class="n">record</span> <span class="ow">and</span> <span class="n">record</span> <span class="o">!=</span> <span class="nb">self</span>
+      <span class="n">the_slug</span> <span class="o">=</span> <span class="n">make_unique</span><span class="p">(</span><span class="n">the_slug</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+      <span class="n">record</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="n">find_by</span> <span class="ss">slug</span><span class="p">:</span> <span class="n">the_slug</span>
+      <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+
+    <span class="nb">self</span><span class="o">.</span><span class="n">slug</span> <span class="o">=</span> <span class="n">the_slug</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">to_slug</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>                <span class="c1"># str=&quot; @#$@ My First @#2@%#@ Post!!  &quot;</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">strip</span>               <span class="c1">#  --&gt;&quot;@#$@ My First @#2@%#@ Post!!&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/[^A-Za-z0-9]/</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1">#  --&gt;&quot;-----My-First---2-----Post--&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/-+/</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>           <span class="c1">#  --&gt;&quot;-My-First-2-Post-&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/^-+/</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>           <span class="c1">#  --&gt;&quot;My-First-2-Post-&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/-+$/</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>           <span class="c1">#  --&gt;&quot;My-First-2-Post&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">downcase</span>                  <span class="c1">#  --&gt;&quot;my-first-2-post&quot;</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">make_unique</span><span class="p">(</span><span class="n">the_slug</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">the_slug</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">to_i</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">the_slug</span> <span class="o">=</span> <span class="n">the_slug</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">count</span><span class="o">.</span><span class="n">to_s</span>
+    <span class="k">else</span>
+      <span class="n">the_slug</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">-</span><span class="mi">1</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">count</span><span class="o">.</span><span class="n">to_s</span>
+    <span class="k">end</span>
+    <span class="n">the_slug</span>
+  <span class="k">end</span>
+</code></pre></div>
+<div>Refer to these commits to the PostIt app for details of code changes:</div>
+
+<ul>
+<li><a href="https://github.com/ppj/postit/commit/64e1e4eb49f1485c8684e01b67bac6a6a64d327b">Slugifying the Post model</a></li>
+<li><a href="https://github.com/ppj/postit/commit/715a2d8a2ba415d048bc776c09c0d4438757201f">Robust slug generation algorithm</a></li>
+</ul>
+
+<p><a href="#slugt">Back</a></p>
+
+<p><a name='role'></a></p>
+
+<h3 id="3.-simple-role-implementation">3. Simple Role Implementation</h3>
+
+<div>A very common requirement for an app that user-authentication is a need to differentiate between users on the basis of permissions they have. A simple way to enable roles for users:</div>
+
+<ol>
+<li>add a &#39;role&#39; columns to the Users table using a simple migration</li>
+<li><div>add methods to the model to check whether a particular user has a specific role (indicated by a string in the role column)</div>
+<code>ruby
+def admin?
+  self.role == &#39;admin&#39;
+end
+</code></li>
+<li><div>enable/disable features in the controllers&#8230;
+<code>ruby application_controller.rb  
+def require_admin
+  access_denied &quot;You need admin access to do that!&quot; unless logged_in? and current_user.admin?
+end
+</code>
+or in the view templates&#8230;
+<code>ruby
+&lt;% if logged_in? and current_user.admin? %&gt;
+&lt;li&gt;&lt;%= link_to &quot;Create New Category&quot;, new_category_path %&gt;&lt;/li&gt;
+&lt;% end %&gt;
+</code>
+based on the role checks</div></li>
+</ol>
+
+<p>A more serious implementation would call for defining a Role model and a Permission model. A has-many through associations will define Users can have many Roles <code>through: :permissions</code>. The role checks can now be done through this association. Chris Lee, the instructor of the 2nd course suggests that this should be avoided unless absolutely necessary, because this rolls into a massive net of checks and nested models. The simple implementation shown above suffices our need.</p>
+
+<div>Refer to these commits to the PostIt app for details of code changes:</div>
+
+<ul>
+<li><a href="https://github.com/ppj/postit/commit/2f43e69028a34f13585328db7993de34401dbc96">Adding role to User table</a></li>
+<li><a href="https://github.com/ppj/postit/commit/4e04e1f03d592ac5bd06d5b0374411dd7ba6a48f">Only &#39;admin&#39;s can create categories</a></li>
+<li><a href="https://github.com/ppj/postit/commit/39c5a1a6c9725069ba5e51e2f727f5cee99f7c5e">Only author or admins can edit a post</a></li>
+</ul>
+
+<p><a href="#rolet">Back</a></p>
+
+<p><a name='time'></a></p>
+
+<h3 id="4.-time-zone-setting">4. Time-zone Setting</h3>
+
+<p>The app has a default time-zone (UTC) which can be overridden by specifying a different one in the &#39;./config/application.rb&#39; file.<br>
+Adding <code>config.time_zone = &#39;Melbourne&#39;</code> to this file will set the default time-zone of the application to Melbourne time overriding the default (UTC)</p>
+
+<p>Note: All available time-zones can be listed by running the rake task <code>rake time:zones:all</code>.  </p>
+
+<p>Now that the application has a default time-zone, each user should be able to set his/her own. That would need a dedicated column to save that user&#39;s &#39;timezone&#39; in. This can be added by a simple migration:</p>
+
+<ol>
+<li><code>rails generate migration add_timezone_to_users</code><br></li>
+<li><div>Add time-zone column to the User table:</div>
+<code>ruby
+class AddTimezoneToUsers &lt; ActiveRecord::Migration
+def change
+add_column :users, :timezone, :string
+end
+end
+</code></li>
+<li><code>rake db:migrate</code></li>
+</ol>
+
+<p>Time to modify the view template to allow setting of the time-zone: the common form partial used for User registration (User#new) and profile-update (User#edit). The following addition to the existing form partial will address this need:<br>
+<code>
+  &lt;div class=&#39;control-group&#39;&gt;
+    &lt;%= f.label :timezone %&gt;
+    &lt;%= f.time_zone_select :timezone, nil, default: Time.zone.name %&gt;
+  &lt;/div&gt;
+</code></p>
+
+<p>The strong parameters need to include the new attribute <code>:timezone</code> for the above to work through the web interface.<br>
+<code>params.require(:user).permit(:username, :password, :timezone)</code></p>
+
+<p>For time to be displayed in the logged in user&#39;s time-zone, the time-display helper now needs to be modified:</p>
+<div class="highlight"><pre><code class="language-diff" data-lang="diff">   def fix_time(time)
+<span class="gd">-    time.localtime.strftime(&quot;(%d-%b-%Y %I:%M%p %Z)&quot;)</span>
+<span class="gi">+    if logged_in?</span>
+<span class="gi">+      time = time.in_time_zone(current_user.timezone)</span>
+<span class="gi">+    end</span>
+<span class="gi">+    time.strftime(&quot;(%d-%b-%Y %I:%M%p %Z)&quot;)</span>
+   end
+</code></pre></div>
+<p>Refer to <a href="https://github.com/ppj/postit/commit/82c43c1a65aebfafc830b6d7cf361636689ba6b6">this commit</a> to the PostIt app for details of code changes.  </p>
+
+<p><a href="#timet">Back</a></p>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Developing Web-based BlackJack]]></title>

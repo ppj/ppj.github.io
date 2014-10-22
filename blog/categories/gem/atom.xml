@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gem | Learning Ruby]]></title>
+  <link href="http://ppj.github.io/blog/categories/gem/atom.xml" rel="self"/>
+  <link href="http://ppj.github.io/"/>
+  <updated>2014-10-22T16:44:55+11:00</updated>
+  <id>http://ppj.github.io/</id>
+  <author>
+    <name><![CDATA[Prasanna Joshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[DRY Up Example With Modules and Gem Creation]]></title>
+    <link href="http://ppj.github.io/blog/2014/10/21/dry-up-example-with-modules-and-gem-creation/"/>
+    <updated>2014-10-21T16:42:46+11:00</updated>
+    <id>http://ppj.github.io/blog/2014/10/21/dry-up-example-with-modules-and-gem-creation</id>
+    <content type="html"><![CDATA[<p>Almost all the code enabling voting for the Posts and Comments in the PostIt app is common. Its original implementation screamed <strong>D</strong>on&#39;t <strong>R</strong>epeat <strong>Y</strong>ourself, or, in short <strong>DRY</strong>.</p>
+
+<!-- more -->
+
+<p>The same thing is true for the slug-generation and use functionality as well. The slug code is repeated for not two, but three models, namely Post, Category and User. DRYing up the slug code however represents one small challenge as compared to the voting code: slugs are generated from different attributes in each model, <code>:title</code> for Post, <code>:username</code> for User, and <code>:name</code> for Category.</p>
+
+<p>This adds a degree of complexity to how the slug code can be DRYed, and that&#39;s why, this article uses slug as the example to explain the process. Voting DRYing up is not just similar, but much simpler.</p>
+
+<ol>
+<li><a name='modt'></a><a href="#mod">DRYing with Modules</a></li>
+<li><a name='gemt'></a><a href="#gem">DRYing with Gems</a></li>
+</ol>
+
+<p><a name='mod'></a></p>
+
+<h3 id="1.-&#39;dry&#39;ing-up-code-with-modules">1. &#39;DRY&#39;ing up code with Modules</h3>
+
+<p>For the application to load modules from a common location (./lib), the following line needs to be added to ./config/application.rb under the Application class definition:
+<code>config.autoload_paths += %W(#{config.root}/lib)</code></p>
+
+<p>The above creates an array with application_root/lib path in a string format and adds it to the pre-existing array stored in <code>PostitTemplate::Application.config.autoload_paths</code>. This will ensure that all files stored in the ./lib folder will be automatically loaded at application startup.</p>
+
+<p>Slugable.rb stored in this path will be populated by cutting the slug related code from any of the models that implements it (Post, Category, or User). In addition to that, the module file has a call to <code>extend ActiveSupport::Concern</code>. This enables some extra features like capability to add Class methods to the including class and the <code>included</code> hook to let some code to be executed only at the inclusion time. </p>
+
+<p>Shown below is the above implemented for the slugging code, which is also repeated in the User, Post and Category models.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Slugable</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+
+  <span class="n">included</span> <span class="k">do</span>
+    <span class="n">class_attribute</span> <span class="ss">:slug_column</span>
+    <span class="n">before_save</span> <span class="ss">:generate_slug!</span>
+  <span class="k">end</span>
+
+  <span class="k">module</span> <span class="nn">ClassMethods</span>
+    <span class="k">def</span> <span class="nf">set_slug_column_to</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+      <span class="nb">self</span><span class="o">.</span><span class="n">slug_column</span> <span class="o">=</span> <span class="n">column</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">to_param</span>
+    <span class="nb">self</span><span class="o">.</span><span class="n">slug</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">generate_slug!</span>
+    <span class="n">the_slug</span> <span class="o">=</span> <span class="n">to_slug</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">slug_column</span><span class="p">))</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">to_s</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">find_by</span> <span class="ss">slug</span><span class="p">:</span> <span class="n">the_slug</span>
+    <span class="k">while</span> <span class="n">record</span> <span class="ow">and</span> <span class="n">record</span> <span class="o">!=</span> <span class="nb">self</span>
+      <span class="n">the_slug</span> <span class="o">=</span> <span class="n">make_unique</span><span class="p">(</span><span class="n">the_slug</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+      <span class="n">record</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">find_by</span> <span class="ss">slug</span><span class="p">:</span> <span class="n">the_slug</span>
+      <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+
+    <span class="nb">self</span><span class="o">.</span><span class="n">slug</span> <span class="o">=</span> <span class="n">the_slug</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">to_slug</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>                <span class="c1"># str=&quot; @#$@ My First @#2@%#@ Post!!  &quot;</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">strip</span>               <span class="c1">#  --&gt;&quot;@#$@ My First @#2@%#@ Post!!&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/[^A-Za-z0-9]/</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1">#  --&gt;&quot;-----My-First---2-----Post--&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/-+/</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>           <span class="c1">#  --&gt;&quot;-My-First-2-Post-&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/^-+/</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>           <span class="c1">#  --&gt;&quot;My-First-2-Post-&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/-+$/</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>           <span class="c1">#  --&gt;&quot;My-First-2-Post&quot;</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">downcase</span>                  <span class="c1">#  --&gt;&quot;my-first-2-post&quot;</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">make_unique</span><span class="p">(</span><span class="n">the_slug</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">the_slug</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">to_i</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">the_slug</span> <span class="o">=</span> <span class="n">the_slug</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">count</span><span class="o">.</span><span class="n">to_s</span>
+    <span class="k">else</span>
+      <span class="n">the_slug</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">-</span><span class="mi">1</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">count</span><span class="o">.</span><span class="n">to_s</span>
+    <span class="k">end</span>
+    <span class="n">the_slug</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+<p>What makes the Slugable module more complex is the need to handle varying attribute names for the model. This has to be specified by the model including this module. This is implemented using the <code>class_attribute :slug_column</code> and the class method <code>set_slug_column_to(column)</code>. 
+So, apart from the <code>include Slugable</code> call, the models have to call the <code>set_slug_column_to</code> and pass the appropriate <code>:attribute_name</code> to it.  </p>
+
+<table><thead>
+<tr>
+<th>Model</th>
+<th>should include this call</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>User</td>
+<td><code>set_slug_column_to :username</code></td>
+</tr>
+<tr>
+<td>Post</td>
+<td><code>set_slug_column_to :title</code></td>
+</tr>
+<tr>
+<td>Category</td>
+<td><code>set_slug_column_to :name</code></td>
+</tr>
+</tbody></table>
+
+<p><a href="#modt">Back</a></p>
+
+<p><a name='gem'></a></p>
+
+<h3 id="2.-&#39;dry&#39;ing-up-code-with-gems">2. &#39;DRY&#39;ing up code with Gems</h3>
+
+<p>Once we have the Slugable module, it is fairly easy to create a gem from it. But why create a gem when we have DRY code already? The main reason is usability across multiple Rails projects. It will also enable other developers to use (a.k.a. &#39;consume&#39;) the gem if it is pushed to <a href="http://rubygems.org/">RubyGems.org</a>.</p>
+
+<p>Note: One prerequisite for creating a gem is having a gem called &#39;gemcutter&#39; installed. If you don&#39;t already have it (check using <code>gem list gemcutter</code>), install it by issuing <code>gem install gemcutter</code> in your shell.</p>
+
+<p>Since the gem is going to be a separate project, we need to create a separate folder to hold its code. The following steps highlight the process to create the slug gem.</p>
+
+<p>A &#39;Slugable.gemspec&#39; file needs to be in the root path of the gem folder and it should have the following code:<br>
+<code>ruby ./slugable.gemspec
+Gem::Specification.new do |s|
+  s.name        = &quot;sluggit-ppj&quot;
+  s.version     = &quot;0.0.0&quot;
+  s.date        = &quot;2014-10-20&quot;
+  s.summary     = &quot;A slug generator gem&quot;
+  s.description = &quot;A cool gem for slugifying models.&quot;
+  s.author      = &quot;Prasanna Joshi&quot;
+  s.email       = &quot;author@myemail.com&quot;
+  s.files       = [&quot;lib/slugable_ppj.rb&quot;]
+  s.homepage    = &quot;http://www.github.com&quot;
+end
+</code></p>
+
+<div>Some key settings:</div>
+
+<ul>
+<li><code>s.name</code>: specifies the name of the gem</li>
+<li><code>s.files</code>: specifies where the code for the gem resides</li>
+<li><code>s.version</code>: versioning mechanism for the gem</li>
+</ul>
+
+<p>The &#39;./lib/slugable_ppj.rb&#39; could be an exact replica of the module file created earlier.</p>
+
+<p>This is all we need to <strong>create our gem</strong>. Issue<br>
+<code>gem build slugable.gemspec</code><br>
+<div>from the gem root folder path at the shell prompt. If successful in creating the gem, you should see the following output from the command:</div>
+<code>
+  ~/sluggable-gem&gt; gem build slugable.gemspec
+    Successfully built RubyGem
+    Name: sluggit-ppj
+    Version: 0.0.0
+    File: sluggit-ppj-0.0.0.gem
+</code>
+You can see that the &#39;sluggit-ppj-0.0.0.gem&#39; file has been created in you gem root path.</p>
+
+<div>Once created, we need to follow the steps below to actually <strong>use</strong> it now in our project:</div>
+
+<ol>
+<li>add the following lines in the Gemfile of your project to make it available:
+<code>gem &#39;sluggit-ppj&#39;, path: &#39;% local_root_path_of_the_gem %&#39;</code></li>
+<li>run <code>bundle install</code> after modifying the Gemfile</li>
+<li>add <code>require slugable_ppj</code> before the features of the gem are called in your code (safest place to add it in is the file &#39;projec_root_path/config/application.rb&#39; because this file gets loaded immediately after the application starts)</li>
+</ol>
+
+<p>Once you have the gem working like you want to, you can push it to RubyGems.org using the &#39;gemcutter&#39; command:<br>
+<code>gem push sluggit-ppj-0.0.0.gem</code><br>
+The &#39;.gem&#39; file version should change based on your changes to the <code>s.version</code> setting in the &#39;.gemspec&#39; file.</p>
+
+<p>Note: The gem can be disabled (at RubyGems.org) by issuing the 
+<code>gem yank sluggit-ppj -v &#39;0.0.0&#39;</code><br>
+command from the gem root path in the shell. As you can see, you can <code>yank</code> a particular version of the gem from RubyGems.org.</p>
+
+<p><a href="#gemt">Back</a></p>
+]]></content>
+  </entry>
+  
+</feed>
