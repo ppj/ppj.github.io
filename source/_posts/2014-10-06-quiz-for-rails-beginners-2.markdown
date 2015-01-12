@@ -57,11 +57,11 @@ __A1__: Having `resources :dogs` in the block in the routes.rb file is going to 
 [Back](#q1)
 
 <a name='a2'></a>
-__A2__: REST (<strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer) is a way to maintain data persistence in <strong>stateless</strong> data-transfer protocol (which is HTTP in our case). The `resources` keyword in the routes.rb file creates the most used 7 routes (listed above) in a Rails application. These routes are RESTful because they conform to the [REST architectural constraints](http://en.wikipedia.org/wiki/Representational_state_transfer#Architectural_constraints) for web application development. 
+__A2__: REST (<strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer) is a way to maintain data persistence in <strong>stateless</strong> data-transfer protocol (which is HTTP in our case). The `resources` keyword in the routes.rb file creates the most used 7 routes (listed above) in a Rails application. These routes are RESTful because they conform to the [REST architectural constraints](http://en.wikipedia.org/wiki/Representational_state_transfer#Architectural_constraints) for web application development.
 [Back](#q2)
 
 <a name='a3'></a>
-__A3__: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This is makes it very tightly integrated with the model object and it's attributes. A non-model backed helper is a more generic helper to create HTML tags and do not need any ActiveRecord Model object to work on.  
+__A3__: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This makes it very tightly integrated with the model object and it's attributes. A non-model backed helper is a more generic helper to create HTML tags and does not need any ActiveRecord Model object to work on.  
 [Back](#q3)
 
 <a name='a4'></a>
@@ -108,7 +108,7 @@ end
 <div>__A6__:</div>
 <ul class='no_extra_new_line'>
   <li>Model validations are triggered when the database is accessed for update, for example: the `save` or `create` methods are called on a model object</li>
-  <li>f there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling `#errors` on it</li>
+  <li>If there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling `#errors` on it</li>
   Note: model_obj.errors.full_messages can be used to retrieve an array of error messages
   <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors as shown below</li>
 </ul>
@@ -137,7 +137,7 @@ __A8__: Rails partials are HTML snippets which need to be reused in many view te
 [Back](#q8)
 
 <a name='a9'></a>
-__A9__: Partials should be preferred over helpers when too much HTML needs to be embedded. Helpers should be reserved more for the logic (parsing / reformating / calculations) than the presentation itself.   
+__A9__: Partials should be preferred over helpers when too much HTML needs to be embedded. Helpers should be reserved more for the logic (parsing / reformating / calculations) than the presentation itself.
 [Back](#q9)
 
 <a name='a10'></a>
