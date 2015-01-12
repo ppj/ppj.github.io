@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Routes | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/routes/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2014-10-22T16:49:18+11:00</updated>
+  <updated>2015-01-12T11:39:55+11:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -103,11 +103,11 @@
 <p><a href="#q1">Back</a></p>
 
 <p><a name='a2'></a>
-<strong>A2</strong>: REST (<strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer) is a way to maintain data persistence in <strong>stateless</strong> data-transfer protocol (which is HTTP in our case). The <code>resources</code> keyword in the routes.rb file creates the most used 7 routes (listed above) in a Rails application. These routes are RESTful because they conform to the <a href="http://en.wikipedia.org/wiki/Representational_state_transfer#Architectural_constraints">REST architectural constraints</a> for web application development. 
+<strong>A2</strong>: REST (<strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer) is a way to maintain data persistence in <strong>stateless</strong> data-transfer protocol (which is HTTP in our case). The <code>resources</code> keyword in the routes.rb file creates the most used 7 routes (listed above) in a Rails application. These routes are RESTful because they conform to the <a href="http://en.wikipedia.org/wiki/Representational_state_transfer#Architectural_constraints">REST architectural constraints</a> for web application development.
 <a href="#q2">Back</a></p>
 
 <p><a name='a3'></a>
-<strong>A3</strong>: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This is makes it very tightly integrated with the model object and it&#39;s attributes. A non-model backed helper is a more generic helper to create HTML tags and do not need any ActiveRecord Model object to work on.<br>
+<strong>A3</strong>: The major difference is a model-backed helper requires, and directly works on, a ActiveRecord Model object for creation of equivalent HTML tags. This makes it very tightly integrated with the model object and it&#39;s attributes. A non-model backed helper is a more generic helper to create HTML tags and does not need any ActiveRecord Model object to work on.<br>
 <a href="#q3">Back</a></p>
 
 <p><a name='a4'></a>
@@ -176,7 +176,7 @@ The equivalent code for the <code>create</code> action of the Category controlle
 <div><strong>A6</strong>:</div>
 <ul class='no_extra_new_line'>
   <li>Model validations are triggered when the database is accessed for update, for example: the <code>save</code> or <code>create</code> methods are called on a model object</li>
-  <li>f there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling <code>#errors</code> on it</li>
+  <li>If there are validation errors triggered during the above operation, they are saved on the model object itself which can be accessed by calling <code>#errors</code> on it</li>
   Note: model_obj.errors.full_messages can be used to retrieve an array of error messages
   <li>This object cab be saved in an instance variable of the controller class and then can be used in the rendered template to display errors as shown below</li>
 </ul>
@@ -205,7 +205,7 @@ The equivalent code for the <code>create</code> action of the Category controlle
 <a href="#q8">Back</a></p>
 
 <p><a name='a9'></a>
-<strong>A9</strong>: Partials should be preferred over helpers when too much HTML needs to be embedded. Helpers should be reserved more for the logic (parsing / reformating / calculations) than the presentation itself.<br>
+<strong>A9</strong>: Partials should be preferred over helpers when too much HTML needs to be embedded. Helpers should be reserved more for the logic (parsing / reformating / calculations) than the presentation itself.
 <a href="#q9">Back</a></p>
 
 <p><a name='a10'></a>
