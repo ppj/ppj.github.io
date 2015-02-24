@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Note About Creating an Associated Model - Learning Ruby</title>
+  <meta name="author" content="Prasanna Joshi">
+
+  
+  <meta name="description" content="For a Review model which belongs_to a Video (Video has_many :reviews), there are a few ways to create a new Review associated to a Video. Two of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ppj.github.io/blog/2015/02/25/a-note-about-creating-an-associated-model">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Learning Ruby" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Learning Ruby</a></h1>
+  
+    <h2>Reference, Mnemonic & Ramblings</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ppj.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Note About Creating an Associated Model</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-25T00:09:06+11:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:09 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>For a Review model which <code>belongs_to</code> a Video (Video <code>has_many :reviews</code>), there are a few ways to create a new Review associated to a Video. Two of which are:</p>
+
+<!-- more -->
+
+<p>Given <code>test_video = Video.create(...) # attributes for video omitted</code></p>
+
+<ol>
+<li><code>Review.create(video: test_video, ...) # other attributes for review omitted</code>, or</li>
+<li><code>test_video.reviews.create(...) # attributes for review omitted</code></li>
+</ol>
+
+<p>Here are the Review and Video models for reference:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Video &lt; ActiveRecord::Base
+</span><span class='line'>  # irrelevant stuff omitted
+</span><span class='line'>  before_validation :update_rating!
+</span><span class='line'>
+</span><span class='line'>  has_many :reviews
+</span><span class='line'>
+</span><span class='line'>  private
+</span><span class='line'>
+</span><span class='line'>  def update_rating!
+</span><span class='line'>    # update the video's average rating based on it's reviews' ratings
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Review &lt; ActiveRecord::Base
+</span><span class='line'>  after_save :update_video_rating!
+</span><span class='line'>
+</span><span class='line'>  # irrelevant stuff omitted
+</span><span class='line'>  belongs_to :video
+</span><span class='line'>
+</span><span class='line'>  private
+</span><span class='line'>
+</span><span class='line'>  def update_video_rating!
+</span><span class='line'>    video.save if video
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+<p>The difference between the two methods to create the Review became obvious because i had the following in the test for the Review model:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">test_video</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update_rating!</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">no_args</span><span class="p">)</span>
+</span><span class='line'><span class="no">Review</span><span class="o">.</span><span class="n">create</span><span class="p">(</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">,</span> <span class="ss">video</span><span class="p">:</span> <span class="n">test_video</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The above test wouldn&#39;t pass because when the Review instance is created this way, the test_video instance in the test has a different memory location from the one which received the <code>update_rating!</code> call through the Review model <code>after_save :update_video_rating</code> callback.</p>
+
+<p>When the Review instance is created using the 2nd way shown above, the same test passes because now the Video instance that receives the <code>update_rating!</code> call doesn&#39;t change.</p>
+
+<p>However, i think i would still rewrite the expectation to accommodate for both calls this way:
+<code>expect_any_instance_of(Video).to receive(:update_rating!).with(no_args)</code></p>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Prasanna Joshi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-02-25T00:09:06+11:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:09 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/expectation/'>expectation</a>, <a class='category' href='/blog/categories/messages/'>messages</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/receive/'>receive</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/21/dry-up-example-with-modules-and-gem-creation/" title="Previous Post: DRY up example with modules and gem creation">&laquo; DRY up example with modules and gem creation</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/02/25/a-note-about-creating-an-associated-model/">A Note About Creating an Associated Model</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/21/dry-up-example-with-modules-and-gem-creation/">DRY Up Example With Modules and Gem Creation</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/21/enhancements-to-the-postit-app/">Enhancements to the PostIt App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/some-additional-features-for-the-postit-app/">Some Additional Features for the PostIt App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/12/quiz-for-rails-beginners-3/">Quiz for Rails Beginners 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/06/quiz-for-rails-beginners-2/">Quiz for Rails Beginners 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/25/getting-started-with-rails/">Getting Started With Rails: RDBMS, Associations, Resources</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/24/quiz-for-rails-beginners-1/">Quiz for Rails Beginners 1</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/ppj">@ppj</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'ppj',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Prasanna Joshi -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
