@@ -4,7 +4,7 @@
   <title><![CDATA[Learning Ruby]]></title>
   <link href="http://ppj.github.io/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2015-06-03T12:50:11+10:00</updated>
+  <updated>2015-06-03T15:39:57+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Takeaways From Course 3 Part 2]]></title>
+    <link href="http://ppj.github.io/blog/2015/06/03/takeaways-from-course-3-part-2/"/>
+    <updated>2015-06-03T12:59:46+10:00</updated>
+    <id>http://ppj.github.io/blog/2015/06/03/takeaways-from-course-3-part-2</id>
+    <content type="html"><![CDATA[<p>These are some key takeaways from the <a href="http://www.gotealeaf.com/curriculum#!production-apps">3rd course</a> for me based on the curriculum as well as the feedback received from the TAs for every module (aka Week).</p>
+
+<div class="no_extra_new_line">In Module 3, focus was on learning&#8230;</div>
+
+<ul>
+<li>to keep controllers skinny</li>
+<li>ActiveRecord transactions (all or none!)</li>
+<li>RSpec macros and shared_examples</li>
+<li>Capybara introduction and first feature spec</li>
+</ul>
+
+<!--more-->
+
+<h3 id="module-3">Module 3</h3>
+
+<ul>
+<li>Outside-in development in action with feature-specs in Capybara: Starting with a feature-spec (BDD) and letting it drive the design (models/routes/controllers) seems to be coming a bit more naturally to me than the other way round</li>
+<li>Single-Assertion Principle can (and should) be violated in feature-specs: not just to DRY up the code, but mainly because feature specs are expensive to run!</li>
+<li>ActiveRecord transactions was one of the primary learnings when trying to update the video positions in the queue. Got introduced to <a href="http://en.wikipedia.org/wiki/ACID">ACID</a>, thanks to the missus!</li>
+<li>RSpec shared_examples and macros are very helpful in DRYing up the specs.</li>
+<li>Got re-exposed to :xpath based search of elements in the view template! DOM tree, XPath, had heard and read about these a long time ago for some thing totally different!</li>
+</ul>
+
+<h4 id="finer-points:">Finer points:</h4>
+
+<p><li><code>QueueItem.find_by(id: params[:id], user: current_user)</code><br>
+does not throw a &quot;RecordNotFound&quot; exception in rails. Doing this<br>
+<code>current_user.queue_items.find(params[:id])</code><br>
+does. Use either knowingly!</li>
+<li>Do not prefix method names with &#39;get_&#39; or &#39;set_&#39;. Instead come up with better names to indicate what they do.</li>
+<li>Use <code>method: delete</code> instead of <code>get</code> for destroying a record so that the route cannot be bookmarked.</li>
+<li>Use <code>find_by</code> instead of <code>where(...).first</code> for searching a single record.</li>
+<li>Prefix <code>self.</code> when assigning value to an instance variable but it is not necessary when using the variable in an instance method.</li></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Takeaways From Course 3 - Part 1]]></title>
