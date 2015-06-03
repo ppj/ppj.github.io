@@ -20,6 +20,7 @@ These are some key takeaways from the [3rd course](http://www.gotealeaf.com/curr
 
 <!--more-->
 
+### Module 4
 <div class="no_extra_new_line">This week i was reminded of some basics again (which i had forgotten!). Primarily:</div>
 <ul>
 <li>Avoid rendering from a POST request unless there's an error.</li>
@@ -31,7 +32,7 @@ These are some key takeaways from the [3rd course](http://www.gotealeaf.com/curr
 
 <div class="no_extra_new_line">Other tips i appreciated in my code review were:</div>
 <ul>
-<li>Use <code>pluck</code> instead of <code>map</code> for performance. <code>pluck</code> pulls only the ids from the database and loads the data into an array. It saves a lot of processing time and power over loading every record into memory using <code>map</code>. However, <a href="http://6ftdan.com/allyourdev/2015/05/13/rails-dont-pluck-unnecessarily">Here's an article</a> that talks about when <code>pluck</code> is unnecessary.</li>
+<li>Use <code>pluck</code> instead of <code>map</code> for performance. <code>pluck</code> pulls only the ids from the database and loads the data into an array. It saves a lot of processing time and power over loading every record into memory using <code>map</code>. However, <a href="http://6ftdan.com/allyourdev/2015/05/13/rails-dont-pluck-unnecessarily">here's an article</a> that talks about when <code>pluck</code> is unnecessary.</li>
 <li>For efficient single-record search, use <code>find_by(attribute: value)</code> than the fancy <code>find_by_attribute(value)</code>, which goes through <code>method_missing</code>, and doesn't even save much typing!</li>
 <li>Avoid writing migrations for populating data. Write a <a href="http://guides.rubyonrails.org/command_line.html#custom-rakek">custom rake task</a> under 'lib/tasks' instead.</li>
 <li>Clear ActionMailer deliveries using <code>ActionMailer::Base.deliveries.clear</code> in <code>before</code> or <code>after</code> hooks instead of in a particular spec to ensure their purging.
