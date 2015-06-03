@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Takeaways from course 3 part 2"
+title: "Takeaways From Course 3 - Part 2"
 date: 2015-06-03 12:59:46 +1000
 comments: true
 categories:
