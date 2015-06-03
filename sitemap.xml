@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ppj.github.io/blog/2015/06/03/takeaways-from-course-3-part-1/</loc>
+    <lastmod>2015-06-03T10:55:35+10:00</lastmod>
+  </url>
+  <url>
     <loc>http://ppj.github.io/blog/2015/02/25/a-note-about-creating-an-associated-model/</loc>
     <lastmod>2015-02-25T00:09:06+11:00</lastmod>
   </url>
@@ -70,10 +74,137 @@
   </url>
   <url>
     <loc>http://ppj.github.io/</loc>
-    <lastmod>2015-02-25T10:44:55+11:00</lastmod>
   </url>
   <url>
     <loc>http://ppj.github.io/blog/archives/</loc>
-    <lastmod>2015-02-25T10:44:55+11:00</lastmod>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/about-me/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/general/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/pry/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/ruby/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/ruby-debugging/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/pry-quick-reference/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/beginner/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/procedural-programming/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/object-oriented/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/tdd/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/http/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/html/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/css/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/sinatra/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/javascript/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/ajax/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/rails/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/tutorial/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/tealeaf/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/quiz/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/associations/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/relational-database/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/migrations/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/resources/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/rest/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/routes/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/helpers/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/partials/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/mvc/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/polymorphic/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/user-authentication/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/security/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/destroy-model-object/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/sjr/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/slug/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/dry/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/role/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/timezone/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/gem/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/rspec/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/expectation/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/messages/</loc>
+  </url>
+  <url>
+    <loc>http://ppj.github.io/blog/categories/receive/</loc>
   </url>
 </urlset>
