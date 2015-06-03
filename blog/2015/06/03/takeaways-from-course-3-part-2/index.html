@@ -109,14 +109,32 @@
 
 <h4 id="finer-points:">Finer points:</h4>
 
-<p><li><code>QueueItem.find_by(id: params[:id], user: current_user)</code><br>
-does not throw a &quot;RecordNotFound&quot; exception in rails. Doing this<br>
-<code>current_user.queue_items.find(params[:id])</code><br>
-does. Use either knowingly!</li>
-<li>Do not prefix method names with &#39;get_&#39; or &#39;set_&#39;. Instead come up with better names to indicate what they do.</li>
-<li>Use <code>method: delete</code> instead of <code>get</code> for destroying a record so that the route cannot be bookmarked.</li>
+<ul>
+<li><code>QueueItem.find_by(id: params[:id], user: current_user)</code>
+does not throw a &#8220;RecordNotFound&#8221; exception in rails. Doing this <code>current_user.queue_items.find(params[:id])</code> does. Use either knowingly!</li>
+<li>Do not prefix method names with <code>get_</code> or <code>set_</code>. Instead come up with better names to indicate what they do.</li>
+<li>Use <code>method: delete</code> instead of the default <code>get</code> for destroying a record so that the route cannot be bookmarked.</li>
 <li>Use <code>find_by</code> instead of <code>where(...).first</code> for searching a single record.</li>
-<li>Prefix <code>self.</code> when assigning value to an instance variable but it is not necessary when using the variable in an instance method.</li></p>
+<li>Prefix <code>self.</code> when assigning value to an instance variable but it is not necessary when using the variable in an instance method.</li>
+</ul>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
 </div>
 
 
@@ -160,6 +178,8 @@ does. Use either knowingly!</li>
         <a class="basic-alignment left" href="/blog/2015/06/03/takeaways-from-course-3-part-1/" title="Previous Post: Takeaways from Course 3 - Part 1">&laquo; Takeaways from Course 3 - Part 1</a>
       
       
+        <a class="basic-alignment right" href="/blog/2015/06/03/takeaways-from-course-3-part-3/" title="Next Post: Takeaways From Course 3 - Part 3">Takeaways From Course 3 - Part 3 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -171,6 +191,10 @@ does. Use either knowingly!</li>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/06/03/takeaways-from-course-3-part-3/">Takeaways From Course 3 - Part 3</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/06/03/takeaways-from-course-3-part-2/">Takeaways From Course 3 Part 2</a>
@@ -198,10 +222,6 @@ does. Use either knowingly!</li>
     
       <li class="post">
         <a href="/blog/2014/10/12/quiz-for-rails-beginners-3/">Quiz for Rails Beginners 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/06/quiz-for-rails-beginners-2/">Quiz for Rails Beginners 2</a>
       </li>
     
   </ul>

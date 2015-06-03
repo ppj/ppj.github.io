@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Beginner | Learning Ruby]]></title>
   <link href="http://ppj.github.io/blog/categories/beginner/atom.xml" rel="self"/>
   <link href="http://ppj.github.io/"/>
-  <updated>2015-06-03T15:39:57+10:00</updated>
+  <updated>2015-06-03T16:46:24+10:00</updated>
   <id>http://ppj.github.io/</id>
   <author>
     <name><![CDATA[Prasanna Joshi]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Takeaways From Course 3 - Part 3]]></title>
+    <link href="http://ppj.github.io/blog/2015/06/03/takeaways-from-course-3-part-3/"/>
+    <updated>2015-06-03T15:48:12+10:00</updated>
+    <id>http://ppj.github.io/blog/2015/06/03/takeaways-from-course-3-part-3</id>
+    <content type="html"><![CDATA[<p>These are some key takeaways from the <a href="http://www.gotealeaf.com/curriculum#!production-apps">3rd course</a> for me based on the curriculum as well as the feedback received from the TAs for every module (aka Week).</p>
+
+<div class="no_extra_new_line">In Module 4, focus was on learning&#8230;</div>
+
+<ul>
+<li>self-referential associations (a user following another user)</li>
+<li>ActionMailer: sending emails</li>
+<li>token generation for password reseting</li>
+</ul>
+
+<!--more-->
+
+<div class="no_extra_new_line">This week i was reminded of some basics again (which i had forgotten!). Primarily:</div>
+
+<ul>
+<li>Avoid rendering from a POST request unless there&#8217;s an error.</li>
+<li>Try to keep the test setup close to the action and assertion (double check the use of <code>let</code> and <code>before</code> after writing specs). This helps in readability of the specs.</li>
+<li>Single-Assertion Principle (more of a guideline than a law): Avoid unrelated assertions in a single spec.</li>
+<li>Name the shared_examples well enough to be understood clearly.
+<li>Use <code>flash.now["alert message"]</code> for <code>render</code>ing instead of <code>flash["alert message"]</code>. The latter carries over to the next request which is why it is used with <code>redirect_to</code> - a new request.
+</ul>
+
+<div class="no_extra_new_line">Other tips i appreciated in my code review were:</div>
+
+<ul>
+<li>Use <code>pluck</code> instead of <code>map</code> for performance. <code>pluck</code> pulls only the ids from the database and loads the data into an array. It saves a lot of processing time and power over loading every record into memory using <code>map</code>. However, <a href="http://6ftdan.com/allyourdev/2015/05/13/rails-dont-pluck-unnecessarily">Here&#8217;s an article</a> that talks about when <code>pluck</code> is unnecessary.</li>
+<li>For efficient single-record search, use <code>find_by(attribute: value)</code> than the fancy <code>find_by_attribute(value)</code>, which goes through <code>method_missing</code>, and doesn&#8217;t even save much typing!</li>
+<li>Avoid writing migrations for populating data. Write a <a href="http://guides.rubyonrails.org/command_line.html#custom-rakek">custom rake task</a> under &#8216;lib/tasks&#8217; instead.</li>
+<li>Clear ActionMailer deliveries using <code>ActionMailer::Base.deliveries.clear</code> in <code>before</code> or <code>after</code> hooks instead of in a particular spec to ensure their purging.
+</ul>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Takeaways From Course 3 Part 2]]></title>
@@ -43,14 +99,32 @@
 
 <h4 id="finer-points:">Finer points:</h4>
 
-<p><li><code>QueueItem.find_by(id: params[:id], user: current_user)</code><br>
-does not throw a &quot;RecordNotFound&quot; exception in rails. Doing this<br>
-<code>current_user.queue_items.find(params[:id])</code><br>
-does. Use either knowingly!</li>
-<li>Do not prefix method names with &#39;get_&#39; or &#39;set_&#39;. Instead come up with better names to indicate what they do.</li>
-<li>Use <code>method: delete</code> instead of <code>get</code> for destroying a record so that the route cannot be bookmarked.</li>
+<ul>
+<li><code>QueueItem.find_by(id: params[:id], user: current_user)</code>
+does not throw a &#8220;RecordNotFound&#8221; exception in rails. Doing this <code>current_user.queue_items.find(params[:id])</code> does. Use either knowingly!</li>
+<li>Do not prefix method names with <code>get_</code> or <code>set_</code>. Instead come up with better names to indicate what they do.</li>
+<li>Use <code>method: delete</code> instead of the default <code>get</code> for destroying a record so that the route cannot be bookmarked.</li>
 <li>Use <code>find_by</code> instead of <code>where(...).first</code> for searching a single record.</li>
-<li>Prefix <code>self.</code> when assigning value to an instance variable but it is not necessary when using the variable in an instance method.</li></p>
+<li>Prefix <code>self.</code> when assigning value to an instance variable but it is not necessary when using the variable in an instance method.</li>
+</ul>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
 ]]></content>
   </entry>
   
@@ -505,49 +579,6 @@ group = Group.find(1)
 user.group &lt;&lt; group
 </code>
 <a href="#q15">Back</a></p>
-
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'ppjgithubio'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-<p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My (Failed) Initial Experiments With TDD]]></title>
-    <link href="http://ppj.github.io/blog/2014/09/03/my-failed-initial-experiments-with-tdd/"/>
-    <updated>2014-09-03T12:10:14+10:00</updated>
-    <id>http://ppj.github.io/blog/2014/09/03/my-failed-initial-experiments-with-tdd</id>
-    <content type="html"><![CDATA[<p>My better-half is a software developer with a rich experience of 10+ years. She absolutely swears by Test Driven Development (TDD). And seems to have all the right reasons for preaching it, as far as my limited knowledge goes. I read up a bit about it and watched a few screen casts too.</p>
-
-<!-- more -->
-
-<p>So when i was to start developing the object oriented console-based BlackJack game, i thought i&#39;d give it a shot. After all this was technically my 2nd go at developing an OO application (the TicTacToe game was the first)!</p>
-
-<p>I installed the rspec gem, enabled color display for my PowerShell (yes i use Windows!) to actually <em>feel</em> the <em>red-green</em>-refactor cycle! I was all set. Or so i thought. I started with writing the tests for the most fundamental of the classes my problem statement gave me, the Card class. I had read that TDD is much more than writing tests first. Primarily, it should lead to evolvution your application design, and that, adhering to the SOLID principles of object oriented design. And that&#39;s where the problems began.</p>
-
-<p>I had also read the theory about the five Object Oriented Design Principles (SOLID). Also, how it can (is supposed to) ensure low-coupling and high-cohesion between classes. This is where my inexperience in OOP started showing up. </p>
-
-<p>I forced myself to move from the Card class to the Deck class. I continued using TDD to develop it. But i just could not use TDD to continue to develop the app! I could not see how TDD would help me take the program further! I even asked my wife to show me how she would do it (for a couple of sessions at least). That didn&#39;t help much either.</p>
-
-<p>Finally after much frustration, arguments and some more reading up i decided not to muddle my learning with TDD <em>for now</em>.</p>
-
-<p>One article that helped me reach this conclusion: <a href="http://blog.testdouble.com/posts/2014-01-25-the-failures-of-intro-to-tdd.html"><strong>The Failures of &quot;Intro to TDD&quot;</strong></a>. Especially the introduction and the last two sections.</p>
-
-<p>Also, my course instructor at TeaLeaf helped me understand the reasons of not using TDD at an early stage of learning OOP&#8230; which are what i have talked about above. I will not experiment much with it before i start the third course which talks in depth about the SOLID principles. Moreover, it is expected to be completed using TDD through-out.</p>
 
 <div id="disqus_thread"></div>
 
