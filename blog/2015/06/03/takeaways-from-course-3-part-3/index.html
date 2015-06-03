@@ -96,6 +96,8 @@
 
 <!--more-->
 
+<h3 id="module-4">Module 4</h3>
+
 <div class="no_extra_new_line">This week i was reminded of some basics again (which i had forgotten!). Primarily:</div>
 
 <ul>
@@ -109,7 +111,7 @@
 <div class="no_extra_new_line">Other tips i appreciated in my code review were:</div>
 
 <ul>
-<li>Use <code>pluck</code> instead of <code>map</code> for performance. <code>pluck</code> pulls only the ids from the database and loads the data into an array. It saves a lot of processing time and power over loading every record into memory using <code>map</code>. However, <a href="http://6ftdan.com/allyourdev/2015/05/13/rails-dont-pluck-unnecessarily">Here&#8217;s an article</a> that talks about when <code>pluck</code> is unnecessary.</li>
+<li>Use <code>pluck</code> instead of <code>map</code> for performance. <code>pluck</code> pulls only the ids from the database and loads the data into an array. It saves a lot of processing time and power over loading every record into memory using <code>map</code>. However, <a href="http://6ftdan.com/allyourdev/2015/05/13/rails-dont-pluck-unnecessarily">here&#8217;s an article</a> that talks about when <code>pluck</code> is unnecessary.</li>
 <li>For efficient single-record search, use <code>find_by(attribute: value)</code> than the fancy <code>find_by_attribute(value)</code>, which goes through <code>method_missing</code>, and doesn&#8217;t even save much typing!</li>
 <li>Avoid writing migrations for populating data. Write a <a href="http://guides.rubyonrails.org/command_line.html#custom-rakek">custom rake task</a> under &#8216;lib/tasks&#8217; instead.</li>
 <li>Clear ActionMailer deliveries using <code>ActionMailer::Base.deliveries.clear</code> in <code>before</code> or <code>after</code> hooks instead of in a particular spec to ensure their purging.
